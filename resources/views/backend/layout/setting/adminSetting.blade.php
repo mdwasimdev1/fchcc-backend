@@ -40,8 +40,8 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="card-body">
-                                                <div class="d-flex gap-3">
-                                                    <div class="col-xl-4">
+                                                <div class="">
+                                                    <div class="col-xl-12 d-flex gap-3">
                                                         <div class="mb-3">
                                                             <label class="form-label">Logo</label>
                                                             <input type="file" id="admin_logo" name="admin_logo"
@@ -50,6 +50,16 @@
                                                                 data-max-file-size="12M"
                                                                 @isset($setting->admin_logo)
                                                                   data-default-file="{{ asset('uploads/setting/admin/' . $setting->admin_logo) }}"
+                                                               @endisset>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Mini Logo</label>
+                                                            <input type="file" id="admin_mini_logo" name="admin_mini_logo"
+                                                                class="dropify form-control" accept="image/*"
+                                                                data-allowed-file-extensions="jpg png jpeg webp"
+                                                                data-max-file-size="12M"
+                                                                @isset($setting->admin_mini_logo)
+                                                                  data-default-file="{{ asset('uploads/setting/admin/' . $setting->admin_mini_logo) }}"
                                                                @endisset>
                                                         </div>
 
@@ -64,7 +74,7 @@
                                                                @endisset>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-8">
+                                                    <div class="col-xl-12">
                                                         <div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">Title</label>

@@ -40,8 +40,8 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="card-body">
-                                                <div class="d-flex gap-3">
-                                                    <div class="col-xl-4">
+                                                <div class="">
+                                                    <div class="col-xl-12 d-flex gap-3">
                                                         <div class="mb-3">
                                                             <label class="form-label">Logo</label>
                                                             <input type="file" name="logo" class="dropify"
@@ -50,6 +50,16 @@
                                                                 data-max-file-size="12M"
                                                                  @isset($setting->logo)
                                                                   data-default-file="{{ asset('uploads/setting/system/' . $setting->logo) }}"
+                                                               @endisset>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Mini Logo</label>
+                                                            <input type="file" name="minilogo" class="dropify"
+                                                                accept="image/*"
+                                                                data-allowed-file-extensions="jpg png jpeg webp"
+                                                                data-max-file-size="12M"
+                                                                 @isset($setting->minilogo)
+                                                                  data-default-file="{{ asset('uploads/setting/system/' . $setting->minilogo) }}"
                                                                @endisset>
                                                         </div>
                                                         <div class="mb-3">
@@ -64,7 +74,7 @@
                                                                >
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-8">
+                                                    <div class="col-xl-12">
                                                         <div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">Title</label>

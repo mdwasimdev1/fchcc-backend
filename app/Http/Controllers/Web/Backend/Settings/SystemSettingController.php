@@ -18,6 +18,8 @@ class SystemSettingController extends Controller
 
     public function systemSettingUpdate(Request $request)
     {
+        
+
         $request->validate([
             'system_title' => 'required|string|max:150',
             'system_short_title' => 'nullable|string|max:100',
@@ -45,6 +47,17 @@ class SystemSettingController extends Controller
             $systemLogo = time() . '_' . $logo->getClientOriginalName();
             $logo->move(public_path('uploads/setting/system/'), $systemLogo);
             $setting->logo = $systemLogo;
+        }
+        if ($request->hasFile('minilogo')) {
+
+            if ($setting->minilogo && file_exists(public_path('uploads/setting/system/' . $setting->minilogo))) {
+                unlink(public_path('uploads/setting/system/' . $setting->minilogo));
+            }
+
+            $minilogo = $request->file('minilogo');
+            $systemMiniLogo = time() . '_' . $minilogo->getClientOriginalName();
+            $minilogo->move(public_path('uploads/setting/system/'), $systemMiniLogo);
+            $setting->minilogo = $systemMiniLogo;
         }
         if ($request->hasFile('favicon')) {
 
@@ -102,6 +115,17 @@ class SystemSettingController extends Controller
             $adminLogo = time() . '_' . $admin_logo->getClientOriginalName();
             $admin_logo->move(public_path('uploads/setting/admin/'), $adminLogo);
             $admin_setting->admin_logo = $adminLogo;
+        }
+        if ($request->hasFile('admin_mini_logo')) {
+
+            if ($admin_setting->admin_mini_logo && file_exists(public_path('uploads/setting/admin/' . $admin_setting->admin_mini_logo))) {
+                unlink(public_path('uploads/setting/admin/' . $admin_setting->admin_mini_logo));
+            }
+
+            $admin_mini_logo = $request->file('admin_mini_logo');
+            $adminMiniLogo = time() . '_' . $admin_mini_logo->getClientOriginalName();
+            $admin_mini_logo->move(public_path('uploads/setting/admin/'), $adminMiniLogo);
+            $admin_setting->admin_mini_logo = $adminMiniLogo;
         }
         if ($request->hasFile('admin_favicon')) {
 
