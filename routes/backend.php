@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\Backend\CategoryController;
 use App\Http\Controllers\Web\backend\DashboardController;
 use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\RoleController;
+use App\Http\Controllers\Web\Backend\EventController;
 use App\Http\Controllers\Web\Backend\RolePermissionController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileSettingController;
@@ -27,6 +28,16 @@ Route::post('/theme-toggle', function () {
      return response()->noContent();
 })->name('theme.toggle');
 
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'es'])) {
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+});
 
 
 // Dashboard
@@ -80,6 +91,19 @@ Route::controller(ProductController::class)->group(function () {
      Route::put('/product/{id}', 'update')->name('product.update');
      Route::delete('/product/delete', 'destroy')->name('product.destroy');
      Route::post('/product/status', 'toggleStatus')->name('product.status');
+});
+
+
+// Event Routes
+Route::controller(EventController::class)->group(function () {
+     Route::get('/event', 'index')->name('event.index');
+     Route::get('/event/create', 'create')->name('event.create');
+     Route::post('/event/store', 'store')->name('event.store');
+     Route::get('/event/data', 'getEvent')->name('event.data');
+     Route::get('/event/{id}/edit', 'edit')->name('event.edit');
+     Route::post('/event/update/{id}', 'update')->name('event.update');
+     Route::delete('/event/delete', 'destroy')->name('event.destroy');
+     Route::post('/event/status', 'toggleStatus')->name('event.status');
 });
 
 

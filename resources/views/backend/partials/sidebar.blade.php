@@ -2,13 +2,13 @@
   <div class="icnav">
       <div class="icnav-scroll">
           <ul class="metismenu" id="menu">
-              <li class="menu-title" data-i18n="YOUR COMPANY">YOUR COMPANY</li>
+              <li class="menu-title" data-i18n="{{ __('messages.company_name') }}">{{ __('messages.company_name') }}</li>
               <li>
                   <a href="{{ route('dashboard') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rr-home"></i>
                       </div>
-                      <span class="nav-text" data-i18n="Dashboard">Dashboard</span>
+                      <span class="nav-text" data-i18n="{{ __('messages.dashboard') }}">{{ __('messages.dashboard') }}</span>
                   </a>
 
               </li>
@@ -17,7 +17,7 @@
                       <div class="menu-icon">
                           <i class="fi fi-rs-employees"></i>
                       </div>
-                      <span class="nav-text" data-i18n="Category">Category</span>
+                      <span class="nav-text" >{{ __('messages.category') }}</span>
                   </a>
               </li>
               <li>
@@ -25,7 +25,7 @@
                       <div class="menu-icon">
                           <i class="fi fi-rs-employees"></i>
                       </div>
-                      <span class="nav-text" data-i18n="Category">Sub Category</span>
+                      <span class="nav-text" >{{ __('messages.sub_category') }}</span>
                   </a>
               </li>
               <li>
@@ -33,40 +33,48 @@
                       <div class="menu-icon">
                           <i class="fi fi-rr-workflow-alt"></i>
                       </div>
-                      <span class="nav-text" data-i18n="Product">Product</span>
+                      <span class="nav-text" data-i18n="{{ __('messages.products') }}">{{ __('messages.products') }}</span>
                   </a>
               </li>
               <li>
+                  <a href="{{ route('event.create') }}" aria-expanded="false">
+                      <div class="menu-icon">
+                          <i class="fi fi-rr-workflow-alt"></i>
+                      </div>
+                      <span class="nav-text" data-i18n="{{ __('messages.event') }}">{{ __('messages.event') }}</span>
+                  </a>
+              </li>
+              {{-- <li>
                   <a href="{{ route('faq.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fa-regular fa-circle-question"></i>
                       </div>
                       <span class="nav-text" data-i18n="Product">FAQ</span>
                   </a>
-              </li>
-              <li>
+              </li> --}}
+              {{-- <li>
                   <a href="{{ route('dynamicpages.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fa-regular fa-circle-question"></i>
                       </div>
                       <span class="nav-text" data-i18n="Product">Dynamic Pages</span>
                   </a>
-              </li>
+              </li> --}}
 
-              <li class="menu-title" data-i18n="OUR FEATURES">SETTINGS</li>
+              <li class="menu-title" data-i18n="OUR FEATURES">{{ __('messages.settings') }}</li>
               <li>
                   <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rs-comment-user"></i>
                       </div>
-                      <span class="nav-text" data-i18n="System Settings">System Settings</span>
+                      <span class="nav-text" data-i18n="{{ __('messages.system_settings') }}">{{ __('messages.system_settings') }}</span>
                   </a>
                   <ul aria-expanded="false">
-                      <li><a href="{{ route('profile') }}" data-i18n="Profile Settings">Profile Settings</a></li>
-                      <li><a href="{{ route('system.setting') }}" data-i18n="System Setting">System Setting</a></li>
-                      <li><a href="{{ route('admin.setting') }}" data-i18n="Admin Setting">Admin Setting</a></li>
-                      <li><a href="{{ route('admin.setting.mail') }}" data-i18n="Mail Setting">Mail Setting</a></li>
-                      <li><a href="{{ route('stripe') }}" data-i18n="Stripe Setting">stripe Setting</a></li>
+                      <li><a href="{{ route('profile') }}" data-i18n="{{ __('messages.profile_settings') }}">{{ __('messages.profile_settings') }}</a></li>
+                      <li><a href="{{ route('system.setting') }}" data-i18n="{{ __('messages.system_setting') }}">{{ __('messages.system_setting') }}</a></li>
+                      <li><a href="{{ route('admin.setting') }}" data-i18n="{{ __('messages.admin_setting') }}">{{ __('messages.admin_setting') }}</a></li>
+                      <li><a href="{{ route('admin.setting.mail') }}" data-i18n="{{ __('messages.mail_setting') }}">{{ __('messages.mail_setting') }}</a></li>
+                      <li><a href="{{ route('stripe') }}" data-i18n="{{ __('messages.stripe_setting') }}">{{ __('messages.stripe_setting') }}</a></li>
                   </ul>
               </li>
               @role('Super Admin')
@@ -75,12 +83,11 @@
                           <div class="menu-icon">
                               <i class="fa-solid fa-shield"></i>
                           </div>
-                          <span class="nav-text" data-i18n="Role Permission">Role & Permission</span>
+                          <span class="nav-text" data-i18n="{{ __('messages.role_permissions') }}">{{ __('messages.role_permissions') }}</span>
                       </a>
                       <ul aria-expanded="false">
-                          <li><a href="{{ route('role.index') }}" data-i18n="Role List">Role List</a></li>
-                          <li><a href="{{ route('role.permission.index') }}" data-i18n="Role Permission">Role
-                                  Permission</a></li>
+                          <li><a href="{{ route('role.index') }}" data-i18n="{{ __('messages.role_list') }}">{{ __('messages.role_list') }}</a></li>
+                          <li><a href="{{ route('role.permission.index') }}" data-i18n="{{ __('messages.role_permissions') }}">{{ __('messages.role_permissions') }}</a></li>
                       </ul>
                   </li>
               @endrole
@@ -90,7 +97,7 @@
                       <div class="menu-icon">
                           <i class="fa-solid fa-users"></i>
                       </div>
-                      <span class="nav-text" data-i18n="User">User</span>
+                      <span class="nav-text" data-i18n="{{ __('messages.user') }}">{{ __('messages.user') }}</span>
                   </a>
               </li>
           </ul>

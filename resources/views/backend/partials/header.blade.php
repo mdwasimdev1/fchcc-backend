@@ -4,7 +4,7 @@
          <div class="d-flex">
              <img width="26" height="28"src="{{ asset('uploads/setting/admin/' . $setting->admin_logo) }}"
                  alt="">
-             <p class="brand-title main-title">Super Admin</p>
+             <p class="brand-title main-title">{{ __('messages.super_admin') }}</p>
          </div>
 
      </a>
@@ -23,7 +23,7 @@
          <nav class="navbar navbar-expand">
              <div class="collapse navbar-collapse justify-content-between">
                  <div class="header-left">
-                     <h1 class="main-title">Admin Dashboard</h1>
+                     <h1 class="main-title">{{ __('messages.admin') }}  {{ __('messages.dashboard') }}</h1>
                  </div>
                  <ul class="navbar-nav header-right">
                      <li>
@@ -33,6 +33,23 @@
 
                              {{ session('theme') === 'dark' ? '☀️ Light' : '🌙 Dark' }}
                          </button>
+                     </li>
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                             🌍 {{ strtoupper(app()->getLocale()) }}
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-end">
+                             <li>
+                                 <a class="dropdown-item" href="{{ url('admin/lang/en') }}">
+                                    English
+                                 </a>
+                             </li>
+                             <li>
+                                 <a class="dropdown-item" href="{{ url('admin/lang/es') }}">
+                                    Spanish
+                                 </a>
+                             </li>
+                         </ul>
                      </li>
 
                      <li class="nav-item dropdown header-profile-dropdown">

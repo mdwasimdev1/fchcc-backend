@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DynamicPageController;
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\API\FAQController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SubCategoryController;
@@ -36,3 +37,6 @@ Route::get('/faq', [FAQController::class, 'index']);
 Route::get('/dynamicPage', [DynamicPageController::class, 'index']);
 
 Route::get('/system', [SystemSettingController::class, 'index']);
+
+
+Route::get('/events', [EventController::class, 'index']);

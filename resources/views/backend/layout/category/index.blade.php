@@ -45,7 +45,7 @@
                                                     <input type="number" name="priority" class="form-control">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Name</label>
+                                                    <label class="form-label">{{ __('messages.name') }}</label>
                                                     <input type="text" name="name" class="form-control">
                                                 </div>
                                                 <div class="mb-3">
