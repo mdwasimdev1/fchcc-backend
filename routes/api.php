@@ -4,6 +4,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DynamicPageController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\API\FAQController;
+use App\Http\Controllers\API\NewsletterController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\SystemSettingController;
@@ -51,3 +52,6 @@ Route::prefix('salesforce')->middleware('api')->group(function () {
     Route::get('/find', [SalesforceController::class, 'find']);
     Route::post('/refresh-token', [SalesforceController::class, 'refreshToken']);
 });
+
+
+Route::post('/subscribe', [NewsletterController::class, 'subscribe']);

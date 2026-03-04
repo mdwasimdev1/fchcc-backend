@@ -39,7 +39,7 @@
               <li>
                   <a href="{{ route('event.create') }}" aria-expanded="false">
                       <div class="menu-icon">
-                          <i class="fi fi-rr-workflow-alt"></i>
+                          <i class="fa-solid fa-calendar"></i>
                       </div>
                       <span class="nav-text" data-i18n="{{ __('messages.event') }}">{{ __('messages.event') }}</span>
                   </a>
