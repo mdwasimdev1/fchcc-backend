@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\RoleController;
 use App\Http\Controllers\Web\Backend\EventController;
 use App\Http\Controllers\Web\Backend\RolePermissionController;
+use App\Http\Controllers\Web\Backend\SalesforceController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileSettingController;
 use App\Http\Controllers\Web\Backend\Settings\SystemSettingController;
@@ -222,3 +223,9 @@ Route::controller(StripeController::class)->group(function () {
 
 // Route::get('stripe', [StripeController::class, 'stripe']);
 // Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
+
+
+
+Route::get('/salesforce/connect', [SalesforceController::class, 'connect']);   // OAuth login
+Route::get('/salesforce/callback', [SalesforceController::class, 'callback']); // OAuth callback
+Route::get('/salesforce/accounts', [SalesforceController::class, 'accounts']); // Fetch Accounts

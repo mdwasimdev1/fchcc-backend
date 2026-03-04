@@ -7,6 +7,7 @@ use App\Http\Controllers\API\FAQController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\SystemSettingController;
+use App\Http\Controllers\API\SalesforceController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\UserAuthController;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,13 @@ Route::get('/system', [SystemSettingController::class, 'index']);
 
 
 Route::get('/events', [EventController::class, 'index']);
+
+// Salesforce Integration Routes
+Route::prefix('salesforce')->middleware('api')->group(function () {
+    Route::get('/accounts', [SalesforceController::class, 'accounts']);
+    Route::post('/query', [SalesforceController::class, 'query']);
+    Route::post('/create', [SalesforceController::class, 'create']);
+    Route::post('/update', [SalesforceController::class, 'update']);
+    Route::get('/find', [SalesforceController::class, 'find']);
+    Route::post('/refresh-token', [SalesforceController::class, 'refreshToken']);
+});
