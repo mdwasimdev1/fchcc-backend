@@ -5,7 +5,6 @@
 <link href="{{ asset('backend/app-assets/vendor/metismenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 <link href="{{ asset('backend/app-assets/vendor/@flaticon/flaticon-uicons/css/all/all.css') }}" rel="stylesheet">
 <link href="{{ asset('backend/app-assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
-<link href="{{ asset('backend/app-assets/css/switcher.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css">
 <link rel="stylesheet" href="{{ asset('backend/app-assets/vendor/swiper/swiper-bundle.min.css') }}">

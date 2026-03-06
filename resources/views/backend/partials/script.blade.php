@@ -30,10 +30,6 @@
 <script src="{{ asset('backend/app-assets/js/custom.js') }}"></script>
 <script src="{{ asset('backend/app-assets/js/icnav-init.js') }}"></script>
 
-<!-- Switcher -->
-<script src="{{ asset('backend/app-assets/js/switcher/styleSwitcher.js') }}"></script>
-<script src="{{ asset('backend/app-assets/js/switcher/demo.js') }}"></script>
-
 <!-- DataTables -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 

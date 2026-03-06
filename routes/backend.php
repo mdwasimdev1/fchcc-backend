@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\Backend\SalesforceController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileSettingController;
 use App\Http\Controllers\Web\Backend\Settings\SystemSettingController;
+use App\Http\Controllers\Web\Backend\SponsorController;
 use App\Http\Controllers\Web\Backend\StripeController;
 use App\Http\Controllers\Web\Backend\SubCategoryController;
 use App\Http\Controllers\Web\Backend\UserController;
@@ -52,6 +53,22 @@ Route::get('/user-chart', [DashboardController::class, 'userChart']);
 Route::get('/user-totalUserGrowth', [DashboardController::class, 'totalUserGrowth']);
 Route::get('/user-growth', [DashboardController::class, 'userGrowth']);
 Route::get('/user-status-growth', [DashboardController::class, 'userStatusGrowth']);
+
+
+
+
+
+//Sponsor Routes
+Route::controller(SponsorController::class)->group(function () {
+     Route::get('/sponsor', 'index')->name('sponsor.index');
+     Route::get('/sponsor/create', 'create')->name('sponsor.create');
+     Route::post('/sponsor/store', 'store')->name('sponsor.store');
+     Route::get('/sponsor/data', 'getData')->name('sponsor.data');
+     Route::get('/sponsor/{id}/edit', 'edit')->name('sponsor.edit');
+     Route::post('/sponsor/{id}/update', 'update')->name('sponsor.update');
+     Route::delete('/sponsor/delete', 'destroy')->name('sponsor.destroy');
+     Route::post('/sponsor/status', 'toggleStatus')->name('sponsor.status');
+});
 
 
 
@@ -221,10 +238,8 @@ Route::controller(StripeController::class)->group(function () {
 
 
 
-// Route::get('stripe', [StripeController::class, 'stripe']);
-// Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
 
 
 
-Route::get('/salesforce/login', [SalesforceController::class, 'redirect']);
-Route::get('/salesforce/callback', [SalesforceController::class, 'callback']);
+// Route::get('/salesforce/login', [SalesforceController::class, 'redirect']);
+// Route::get('/salesforce/callback', [SalesforceController::class, 'callback']);

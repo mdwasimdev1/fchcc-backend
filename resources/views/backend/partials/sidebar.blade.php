@@ -12,14 +12,14 @@
                   </a>
 
               </li>
-              {{-- <li>
-                  <a href="{{ route('category.index') }}" aria-expanded="false">
+              <li>
+                  <a href="{{ route('sponsor.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rs-employees"></i>
                       </div>
-                      <span class="nav-text" >{{ __('messages.category') }}</span>
+                      <span class="nav-text" >{{ __('messages.sponsor') }}</span>
                   </a>
-              </li> --}}
+              </li>
               {{-- <li>
                   <a href="{{ route('SubCategory.index') }}" aria-expanded="false">
                       <div class="menu-icon">

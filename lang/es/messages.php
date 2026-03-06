@@ -6,7 +6,7 @@ return [
     'admin' => 'Administrador',
     'super_admin' => 'Súper Administrador',
     'dashboard' => 'Panel',
-    'category' => 'Categoría',
+    'sponsor' => 'Patrocinadores',
     'name' => 'Nombre',
     'sub_category' => 'Subcategoría',
     'welcome'   => 'Bienvenido',
@@ -21,6 +21,20 @@ return [
     'role_permissions' => 'Roles y permisos',
     'role_list' => 'Lista de roles',
     'user' => 'Usuario',
-    'event' => 'Evento'
+    'event' => 'Evento',
+
+
+
+    // Add more translations as needed
+    'website_url' => 'URL del sitio web',
+    'description' => 'Descripción',
+    'logo' => 'Logo',
+    'english' => 'Inglés',
+    'spanish' => 'Español',
+
+
+
+    // Add more translations as needed
+    'save' => 'Guardar',
     
 ];
