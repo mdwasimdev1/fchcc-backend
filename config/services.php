@@ -46,6 +46,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'salesforce' => [
+        'client_id' => env('SALESFORCE_CLIENT_ID'),
+        'client_secret' => env('SALESFORCE_CLIENT_SECRET'),
+        'redirect' => env('SALESFORCE_REDIRECT_URI'),
+        'login_url' => env('SALESFORCE_LOGIN_URL'),
+    ],
 
 
 ];

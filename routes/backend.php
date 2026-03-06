@@ -226,6 +226,5 @@ Route::controller(StripeController::class)->group(function () {
 
 
 
-Route::get('/salesforce/connect', [SalesforceController::class, 'connect']);   // OAuth login
-Route::get('/salesforce/callback', [SalesforceController::class, 'callback']); // OAuth callback
-Route::get('/salesforce/accounts', [SalesforceController::class, 'accounts']); // Fetch Accounts
+Route::get('/salesforce/login', [SalesforceController::class, 'redirect']);
+Route::get('/salesforce/callback', [SalesforceController::class, 'callback']);

@@ -1,50 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\Web\Backend;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Forrest;
+use Illuminate\Support\Facades\Http;
 
-class SalesforceController extends Controller
+class SalesforceAuthController extends Controller
 {
-    /**
-     * Redirect user to Salesforce OAuth login (if WebServer flow)
-     */
-    public function connect()
-    {
-        if (config('forrest.authentication') === 'WebServer') {
-            return Forrest::authenticate();
-        }
 
-        return response()->json(['message' => 'Using Password Grant, no user login required']);
+    // Step 1: Redirect to Salesforce
+    public function redirect()
+    {
+        $query = http_build_query([
+            'client_id' => config('services.salesforce.client_id'),
+            'redirect_uri' => config('services.salesforce.redirect'),
+            'response_type' => 'code'
+        ]);
+
+        return redirect(config('services.salesforce.login_url').'/services/oauth2/authorize?'.$query);
     }
 
-    /**
-     * Handle OAuth callback
-     */
-    public function callback()
-    {
-        if (config('forrest.authentication') === 'WebServer') {
-            Forrest::callback();
-            return redirect('/salesforce/accounts');
-        }
 
-        return response()->json(['error' => 'Not using WebServer authentication']);
-    }
-
-    /**
-     * Fetch Salesforce Accounts
-     */
-    public function accounts()
+    // Step 2: Callback from Salesforce
+    public function callback(Request $request)
     {
-        try {
-            $accounts = Forrest::query("SELECT Id, Name FROM Account LIMIT 10");
-            return response()->json($accounts);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => $e->getMessage()
-            ], 500);
-        }
+
+        $response = Http::asForm()->post(
+            config('services.salesforce.login_url').'/services/oauth2/token',
+            [
+                'grant_type' => 'authorization_code',
+                'client_id' => config('services.salesforce.client_id'),
+                'client_secret' => config('services.salesforce.client_secret'),
+                'redirect_uri' => config('services.salesforce.redirect'),
+                'code' => $request->code
+            ]
+        );
+
+        $data = $response->json();
+
+        return $data;
     }
 }

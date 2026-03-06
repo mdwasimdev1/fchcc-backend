@@ -12,30 +12,30 @@
                   </a>
 
               </li>
-              <li>
+              {{-- <li>
                   <a href="{{ route('category.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rs-employees"></i>
                       </div>
                       <span class="nav-text" >{{ __('messages.category') }}</span>
                   </a>
-              </li>
-              <li>
+              </li> --}}
+              {{-- <li>
                   <a href="{{ route('SubCategory.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rs-employees"></i>
                       </div>
                       <span class="nav-text" >{{ __('messages.sub_category') }}</span>
                   </a>
-              </li>
-              <li>
+              </li> --}}
+              {{-- <li>
                   <a href="{{ route('product.index') }}" aria-expanded="false">
                       <div class="menu-icon">
                           <i class="fi fi-rr-workflow-alt"></i>
                       </div>
                       <span class="nav-text" data-i18n="{{ __('messages.products') }}">{{ __('messages.products') }}</span>
                   </a>
-              </li>
+              </li> --}}
               <li>
                   <a href="{{ route('event.create') }}" aria-expanded="false">
                       <div class="menu-icon">
