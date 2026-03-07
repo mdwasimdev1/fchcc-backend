@@ -36,12 +36,22 @@ return [
 
 
 
-    // Add more translations as needed
+
+    // Add more translations for Button
 
     'save' => 'Save',
+    'update' => 'Update',
+    'cancel' => 'Cancel',
 
 
+    // Add more translations for DataTable
 
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'list' => 'List',
+    'add' => 'Add',
+    'edit' => 'Edit',
+    'delete' => 'Delete'
 
 
 

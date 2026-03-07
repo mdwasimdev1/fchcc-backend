@@ -31,10 +31,21 @@ return [
     'logo' => 'Logo',
     'english' => 'Inglés',
     'spanish' => 'Español',
-
-
-
-    // Add more translations as needed
-    'save' => 'Guardar',
     
+
+
+
+    // Add more translations Button
+    'save' => 'Guardar',
+    'update' => 'Actualizar',
+    'cancel' => 'Cancelar',
+
+
+    // Add more translations for DataTable
+    'status' => 'Estado',
+    'actions' => 'Acciones',
+    'list' => 'Lista',
+    'add' => 'Agregar',
+    'edit' => 'Editar',
+    'delete' => 'Eliminar'
 ];

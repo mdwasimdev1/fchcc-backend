@@ -10,9 +10,9 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                        <a href="{{ route('dashboard') }}">{{ __('messages.dashboard') }}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Sponsor</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('messages.sponsor') }}</li>
                 </ol>
             </nav>
         </div>
@@ -27,7 +27,7 @@
                         <div class="col-xl-4">
                             <div class="card card-collapse">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add Sponsor</h4>
+                                    <h4 class="card-title">{{ __('messages.add') }} {{ __('messages.sponsor') }}</h4>
                                     <a class="collapse-indicator" data-bs-toggle="collapse" href="#collapseFilter"
                                         role="button" aria-expanded="false" aria-controls="collapseFilter">
                                         <i class="fa fa-angle-down"></i>
@@ -40,36 +40,62 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="card-body">
+                                                <div class="mb-3">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-bs-toggle="tab"
+                                                                href="#en">{{ __('messages.english') }}</a>
+                                                        </li>
+
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab"
+                                                                href="#es">{{ __('messages.spanish') }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade show active" id="en">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.name') }}
+                                                                ({{ __('messages.english') }})</label>
+                                                            <input type="text" name="name[en]" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.description') }}
+                                                                ({{ __('messages.english') }})</label>
+                                                            <textarea id="description_en" name="description[en]" cols="30" rows="2" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="es">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.name') }}
+                                                                ({{ __('messages.spanish') }})</label>
+                                                            <input type="text" name="name[es]" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.description') }}
+                                                                ({{ __('messages.spanish') }})</label>
+                                                            <textarea id="description_es" name="description[es]" cols="30" rows="2" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label">Name (English)</label>
-                                                    <input type="text" name="name[en]" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Name (Spanish)</label>
-                                                    <input type="text" name="name[es]" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Description (English)</label>
-                                                    <textarea id="description_en" name="description[en]" cols="30" rows="2" class="form-control"></textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Description (Spanish)</label>
-                                                    <textarea id="description_es" name="description[es]" cols="30" rows="2" class="form-control"></textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Website URL</label>
+                                                    <label class="form-label">{{ __('messages.website_url') }}</label>
                                                     <input type="text" name="website_url" class="form-control">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Sponsor Logo</label>
+                                                    <label class="form-label">{{ __('messages.sponsor') }}
+                                                        {{ __('messages.logo') }}</label>
                                                     <input type="file" name="logo" class="dropify" accept="image/*"
                                                         data-allowed-file-extensions="jpg png jpeg webp"
                                                         data-max-file-size="12M">
                                                 </div>
 
                                                 <div class="clearfix">
-                                                    <button type="submit" class="btn btn-outline-success">Save</button>
+                                                    <button type="submit"
+                                                        class="btn btn-outline-success">{{ __('messages.save') }}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -81,50 +107,73 @@
                                             @csrf
                                             <input type="hidden" name="id" id="edit_sponsor_id">
                                             <div class="card-body">
-                                                <h5 class="mb-3">Edit Sponsor</h5>
+                                                <h5 class="mb-3">{{ __('messages.edit') }} {{ __('messages.sponsor') }}
+                                                </h5>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label">Name (English)</label>
-                                                    <input type="text" name="name[en]" id="edit_name_en"
-                                                        class="form-control">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-bs-toggle="tab"
+                                                                href="#edit_en">{{ __('messages.english') }}</a>
+                                                        </li>
+
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab"
+                                                                href="#edit_es">{{ __('messages.spanish') }}</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Name (Spanish)</label>
-                                                    <input type="text" name="name[es]" id="edit_name_es"
-                                                        class="form-control">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade show active" id="edit_en">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.name') }}
+                                                                ({{ __('messages.english') }})</label>
+                                                            <input type="text" name="name[en]" id="edit_name_en"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.description') }}
+                                                                ({{ __('messages.english') }})</label>
+                                                            <input type="text" name="description[en]"
+                                                                id="edit_description_en" class="form-control">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane fade" id="edit_es" >
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.name') }}
+                                                                ({{ __('messages.spanish') }})</label>
+                                                            <input type="text" name="name[es]" id="edit_name_es"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ __('messages.description') }}
+                                                                ({{ __('messages.spanish') }})</label>
+                                                            <input type="text" name="description[es]"
+                                                                id="edit_description_es" class="form-control">
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+
+
                                                 <div class="mb-3">
-                                                    <label class="form-label">Description (English)</label>
-                                                    <input type="text" name="description[en]" id="edit_description_en"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Description (Spanish)</label>
-                                                    <input type="text" name="description[es]" id="edit_description_es"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Website URL</label>
+                                                    <label class="form-label">{{ __('messages.website_url') }}</label>
                                                     <input type="text" name="website_url" id="edit_website_url"
                                                         class="form-control">
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label">Sponsor Logo</label>
+                                                    <label class="form-label">{{ __('messages.logo') }}</label>
                                                     <input type="file" name="logo" id="edit_logo"
                                                         class="dropify-edit" accept="image/*">
                                                 </div>
-                                                {{-- <div class="mb-3">
-                                                    <label class="form-label">Status</label>
-                                                    <select name="status" id="edit_status" class="form-control">
-                                                        <option value="active">Active</option>
-                                                        <option value="inactive">Inactive</option>
-                                                    </select>
-                                                </div> --}}
+
                                                 <div class="clearfix">
-                                                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary">{{ __('messages.update') }}</button>
                                                     <button type="button" class="btn btn-outline-secondary"
-                                                        id="cancelCategoryEdit">Cancel</button>
+                                                        id="cancelCategoryEdit">{{ __('messages.cancel') }}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -138,8 +187,9 @@
                         <div class="col-xl-8">
                             <div class="card card-collapse">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="fa-solid fa-file-lines me-1 text-primary"></i>Sponsor
-                                        List</h4>
+                                    <h4 class="card-title"><i
+                                            class="fa-solid fa-file-lines me-1 text-primary"></i>{{ __('messages.sponsor') }}
+                                        {{ __('messages.list') }}</h4>
                                     <a class="collapse-indicator" data-bs-toggle="collapse" href="#collapseContactList"
                                         role="button" aria-expanded="false" aria-controls="collapseContactList">
                                         <i class="fa fa-angle-down"></i>
@@ -153,10 +203,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="">S.No</th>
-                                                        <th scope="">Name</th>
-                                                        <th scope="col">Logo</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col" class="text-end">Actions</th>
+                                                        <th scope="">{{ __('messages.name') }}</th>
+                                                        <th scope="col">{{ __('messages.logo') }}</th>
+                                                        <th scope="col">{{ __('messages.status') }}</th>
+                                                        <th scope="col" class="text-end">{{ __('messages.actions') }}
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -344,6 +395,16 @@
                     }
                 }
 
+            });
+
+        });
+
+
+
+        $(document).ready(function() {
+
+            $('.nav-tabs a').click(function() {
+                $(this).tab('show');
             });
 
         });
