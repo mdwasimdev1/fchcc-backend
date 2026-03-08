@@ -51,7 +51,8 @@ return [
     'list' => 'List',
     'add' => 'Add',
     'edit' => 'Edit',
-    'delete' => 'Delete'
+    'delete' => 'Delete',
+    's.no' => 'S.No',
 
 
 

@@ -47,5 +47,6 @@ return [
     'list' => 'Lista',
     'add' => 'Agregar',
     'edit' => 'Editar',
-    'delete' => 'Eliminar'
+    'delete' => 'Eliminar',
+    's.no' => 'N°',
 ];

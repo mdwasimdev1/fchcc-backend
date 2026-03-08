@@ -202,7 +202,7 @@
                                                 class="DataTable table  verticle-middle table-bordered  table-responsive-sm">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="">S.No</th>
+                                                        <th scope="">{{ __('messages.s.no') }}</th>
                                                         <th scope="">{{ __('messages.name') }}</th>
                                                         <th scope="col">{{ __('messages.logo') }}</th>
                                                         <th scope="col">{{ __('messages.status') }}</th>
