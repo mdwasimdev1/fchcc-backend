@@ -18,21 +18,35 @@ class SponsorController extends Controller
 
     public function getData()
     {
-        $sponsors = Sponsor::with(['translations' => function ($q) {
-            $q->where('locale', app()->getLocale());
-        }])->select('sponsors.*');
+        $sponsors = Sponsor::with('translations')->select('sponsors.*');
 
         return DataTables::of($sponsors)
             ->addIndexColumn()
 
             ->addColumn('name', function ($row) {
-                return optional($row->translations->first())->name;
+
+                $translation = $row->translations
+                    ->where('locale', app()->getLocale())
+                    ->first();
+
+                if (!$translation || empty($translation->name)) {
+                    $translation = $row->translations
+                        ->where('locale', 'en')
+                        ->first();
+                }
+
+                if (!$translation || empty($translation->name)) {
+                    $translation = $row->translations
+                        ->where('locale', 'es')
+                        ->first();
+                }
+
+                return $translation ? $translation->name : '';
             })
 
             ->filterColumn('name', function ($query, $keyword) {
                 $query->whereHas('translations', function ($q) use ($keyword) {
-                    $q->where('locale', app()->getLocale())
-                        ->where('name', 'like', "%{$keyword}%");
+                    $q->where('name', 'like', "%{$keyword}%");
                 });
             })
 

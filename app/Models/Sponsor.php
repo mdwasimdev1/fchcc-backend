@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sponsor extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'logo',
         'website_url',
         'status'
@@ -23,5 +23,26 @@ class Sponsor extends Model
 
         return $this->hasOne(SponsorTranslation::class)
             ->where('locale', $locale);
+    }
+
+
+
+    public function getNameAttribute()
+    {
+        $translation = $this->translations
+            ->where('locale', app()->getLocale())
+            ->first();
+
+        if (!$translation || empty($translation->name)) {
+            $translation = $this->translations
+                ->where('locale', config('app.fallback_locale'))
+                ->first();
+        }
+
+        if (!$translation || empty($translation->name)) {
+            $translation = $this->translations->first();
+        }
+
+        return $translation ? $translation->name : '';
     }
 }
