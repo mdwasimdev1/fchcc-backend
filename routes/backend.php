@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\backend\DashboardController;
 use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\RoleController;
 use App\Http\Controllers\Web\Backend\EventController;
+use App\Http\Controllers\Web\Backend\FCHCCMediaController;
 use App\Http\Controllers\Web\Backend\RolePermissionController;
 use App\Http\Controllers\Web\Backend\SalesforceController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
@@ -70,6 +71,17 @@ Route::controller(SponsorController::class)->group(function () {
      Route::post('/sponsor/status', 'toggleStatus')->name('sponsor.status');
 });
 
+//FCHCC Media Routes
+Route::controller(FCHCCMediaController::class)->group(function () {
+     Route::get('/media', 'index')->name('media.index');
+     Route::get('/media/create', 'create')->name('media.create');
+     Route::post('/media/store', 'store')->name('media.store');
+     Route::get('/media/data', 'getData')->name('media.data');
+     Route::get('/media/{id}/edit', 'edit')->name('media.edit');
+     Route::post('/media/{id}/update', 'update')->name('media.update');
+     Route::delete('/media/delete', 'destroy')->name('media.destroy');
+     Route::post('/media/status', 'toggleStatus')->name('media.status');
+});
 
 
 

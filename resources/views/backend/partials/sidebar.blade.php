@@ -20,6 +20,14 @@
                       <span class="nav-text" >{{ __('messages.sponsor') }}</span>
                   </a>
               </li>
+              <li>
+                  <a href="{{ route('media.index') }}" aria-expanded="false">
+                      <div class="menu-icon">
+                          <i class="fi fi-rs-employees"></i>
+                      </div>
+                      <span class="nav-text" >{{ __('messages.media') }}</span>
+                  </a>
+              </li>
               {{-- <li>
                   <a href="{{ route('SubCategory.index') }}" aria-expanded="false">
                       <div class="menu-icon">

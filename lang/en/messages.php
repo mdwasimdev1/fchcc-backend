@@ -32,6 +32,9 @@ return [
     'logo' => 'Logo',
     'english' => 'English',
     'spanish' => 'Spanish',
+    'media' => 'Media',
+    'image' => 'Image',
+    'title' => 'Title',
 
 
 

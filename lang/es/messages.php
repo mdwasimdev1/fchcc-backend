@@ -31,7 +31,10 @@ return [
     'logo' => 'Logo',
     'english' => 'Inglés',
     'spanish' => 'Español',
-    
+    'media' => 'Medios',
+    'image' => 'Imagen',
+    'title' => 'Título',
+
 
 
 
