@@ -10,6 +10,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\SystemSettingController;
 use App\Http\Controllers\API\SponsorController;
+use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\SalesforceController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\UserAuthController;
