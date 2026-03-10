@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\RoleController;
 use App\Http\Controllers\Web\Backend\EventController;
 use App\Http\Controllers\Web\Backend\FCHCCMediaController;
+use App\Http\Controllers\Web\Backend\PartnerController;
 use App\Http\Controllers\Web\Backend\RolePermissionController;
 use App\Http\Controllers\Web\Backend\SalesforceController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
@@ -81,6 +82,18 @@ Route::controller(FCHCCMediaController::class)->group(function () {
      Route::post('/media/{id}/update', 'update')->name('media.update');
      Route::delete('/media/delete', 'destroy')->name('media.destroy');
      Route::post('/media/status', 'toggleStatus')->name('media.status');
+});
+
+//FCHCC Partner Routes
+Route::controller(PartnerController::class)->group(function () {
+     Route::get('/partner', 'index')->name('partner.index');
+     Route::get('/partner/create', 'create')->name('partner.create');
+     Route::post('/partner/store', 'store')->name('partner.store');
+     Route::get('/partner/data', 'getData')->name('partner.data');
+     Route::get('/partner/{id}/edit', 'edit')->name('partner.edit');
+     Route::post('/partner/{id}/update', 'update')->name('partner.update');
+     Route::delete('/partner/delete', 'destroy')->name('partner.destroy');
+     Route::post('/partner/status', 'toggleStatus')->name('partner.status');
 });
 
 

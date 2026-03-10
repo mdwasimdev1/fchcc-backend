@@ -22,6 +22,7 @@ return [
     'role_list' => 'Role List',
     'user' => 'User',
     'event' => 'Event',
+    'partner' => 'Partner',
 
 
 

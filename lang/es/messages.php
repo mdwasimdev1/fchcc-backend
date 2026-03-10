@@ -22,6 +22,7 @@ return [
     'role_list' => 'Lista de roles',
     'user' => 'Usuario',
     'event' => 'Evento',
+    'partner' => 'Socio',
 
 
 

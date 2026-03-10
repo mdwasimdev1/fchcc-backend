@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'Sponsor Page')
+@section('title', 'Partner Page')
 
 @section('content')
     <main class="content-body">
@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('dashboard') }}">{{ __('messages.dashboard') }}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ __('messages.sponsor') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('messages.partner') }}</li>
                 </ol>
             </nav>
         </div>
@@ -27,16 +27,16 @@
                         <div class="col-xl-4">
                             <div class="card card-collapse">
                                 <div class="card-header">
-                                    <h4 class="card-title">{{ __('messages.add') }} {{ __('messages.sponsor') }}</h4>
+                                    <h4 class="card-title">{{ __('messages.add') }} {{ __('messages.partner') }}</h4>
                                     <a class="collapse-indicator" data-bs-toggle="collapse" href="#collapseFilter"
                                         role="button" aria-expanded="false" aria-controls="collapseFilter">
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                 </div>
                                 <div class="collapsed collapse show" id="collapseFilter">
-                                    {{-- Add Sponsor Form --}}
-                                    <div id="addSponsorContainer">
-                                        <form action="{{ route('sponsor.store') }}" method="POST"
+                                    {{-- Add Partner Form --}}
+                                    <div id="addPartnerContainer">
+                                        <form action="{{ route('partner.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="card-body">
@@ -86,7 +86,7 @@
                                                     <input type="text" name="website_url" class="form-control">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">{{ __('messages.sponsor') }}
+                                                    <label class="form-label">{{ __('messages.partner') }}
                                                         {{ __('messages.logo') }}</label>
                                                     <input type="file" name="logo" class="dropify" accept="image/*"
                                                         data-allowed-file-extensions="jpg png jpeg webp"
@@ -102,12 +102,12 @@
                                     </div>
 
                                     {{-- Edit Category Form --}}
-                                    <div id="editSponsorContainer" style="display: none;">
-                                        <form id="updateSponsorForm" enctype="multipart/form-data">
+                                    <div id="editPartnerContainer" style="display: none;">
+                                        <form id="updatePartnerForm" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="id" id="edit_sponsor_id">
+                                            <input type="hidden" name="id" id="edit_partner_id">
                                             <div class="card-body">
-                                                <h5 class="mb-3">{{ __('messages.edit') }} {{ __('messages.sponsor') }}
+                                                <h5 class="mb-3">{{ __('messages.edit') }} {{ __('messages.partner') }}
                                                 </h5>
 
                                                 <div class="mb-3">
@@ -164,7 +164,7 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label">{{ __('messages.sponsor') }} {{ __('messages.logo') }}</label>
+                                                    <label class="form-label">{{ __('messages.partner') }} {{ __('messages.logo') }}</label>
                                                     <input type="file" name="logo" id="edit_logo"
                                                         class="dropify-edit" accept="image/*">
                                                 </div>
@@ -188,7 +188,7 @@
                             <div class="card card-collapse">
                                 <div class="card-header">
                                     <h4 class="card-title"><i
-                                            class="fa-solid fa-file-lines me-1 text-primary"></i>{{ __('messages.sponsor') }}
+                                            class="fa-solid fa-file-lines me-1 text-primary"></i>{{ __('messages.partner') }}
                                         {{ __('messages.list') }}</h4>
                                     <a class="collapse-indicator" data-bs-toggle="collapse" href="#collapseContactList"
                                         role="button" aria-expanded="false" aria-controls="collapseContactList">
@@ -198,7 +198,7 @@
                                 <div class="collapsed collapse show" id="collapseContactList">
                                     <div class="card-body ">
                                         <div class="table-responsive">
-                                            <table id="sponsorTable"
+                                            <table id="partnerTable"
                                                 class="DataTable table  verticle-middle table-bordered  table-responsive-sm">
                                                 <thead>
                                                     <tr>
@@ -233,11 +233,11 @@
 
 @push('scripts')
     <script>
-        let table = $('#sponsorTable').DataTable({
+        let table = $('#partnerTable').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: "{{ route('sponsor.data') }}",
+            ajax: "{{ route('partner.data') }}",
 
             columns: [{
                     data: 'DT_RowIndex',
@@ -304,18 +304,18 @@
         }
 
 
-        // Edit Sponsor
-        $(document).on('click', '.editSponsor', function() {
+        // Edit Partner
+        $(document).on('click', '.editPartner', function() {
 
             let id = $(this).data('id');
 
             $.ajax({
-                url: `/admin/sponsor/${id}/edit`,
+                url: `/admin/partner/${id}/edit`,
                 type: 'GET',
 
                 success: function(response) {
 
-                    $('#edit_sponsor_id').val(response.id);
+                    $('#edit_partner_id').val(response.id);
                     $('#edit_website_url').val(response.website_url);
                     $('#edit_status').val(response.status);
 
@@ -327,13 +327,13 @@
                     $('#edit_description_es').val(response.description_es);
 
                     let logoUrl = response.logo ?
-                        `{{ asset('uploads/sponsors') }}/${response.logo}` :
+                        `{{ asset('uploads/partners') }}/${response.logo}` :
                         '';
 
                     initDropifyEdit(logoUrl);
 
-                    $('#addSponsorContainer').hide();
-                    $('#editSponsorContainer').show();
+                    $('#addPartnerContainer').hide();
+                    $('#editPartnerContainer').show();
 
                     $('html, body').animate({
                         scrollTop: $("#collapseFilter").offset().top - 100
@@ -345,25 +345,25 @@
 
 
         // Cancel Edit
-        $('#cancelSponsorEdit').on('click', function() {
+        $('#cancelPartnerEdit').on('click', function() {
 
-            $('#editSponsorContainer').hide();
-            $('#addSponsorContainer').show();
+            $('#editPartnerContainer').hide();
+            $('#addPartnerContainer').show();
 
         });
 
 
-        // Update Sponsor
-        $('#updateSponsorForm').on('submit', function(e) {
+        // Update Partner
+        $('#updatePartnerForm').on('submit', function(e) {
 
             e.preventDefault();
 
-            let id = $('#edit_sponsor_id').val();
+            let id = $('#edit_partner_id').val();
             let formData = new FormData(this);
 
             $.ajax({
 
-                url: `/admin/sponsor/${id}/update`,
+                url: `/admin/partner/${id}/update`,
                 type: 'POST',
                 data: formData,
 
@@ -374,8 +374,8 @@
 
                     if (response.success) {
 
-                        $('#editSponsorContainer').hide();
-                        $('#addSponsorContainer').show();
+                        $('#editPartnerContainer').hide();
+                        $('#addPartnerContainer').show();
 
                         table.ajax.reload(null, false);
 

@@ -48,6 +48,7 @@ Route::get('/events', [EventController::class, 'index']);
 Route::get('/sponsors', [SponsorController::class, 'index']);
 
 Route::get('/media', [FCHCCMediaController::class, 'index']);
+Route::get('/partners', [PartnerController::class, 'index']);
 
 // Salesforce Integration Routes
 Route::prefix('salesforce')->middleware('api')->group(function () {
