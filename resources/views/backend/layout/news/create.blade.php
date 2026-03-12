@@ -15,9 +15,6 @@
                     <li class="breadcrumb-item active" aria-current="page">FCHCC {{ __('messages.news') }}</li>
                 </ol>
             </nav>
-             <div>
-                <a href="{{ route('news.create') }}" class="btn btn-outline-primary">Create News</a>
-            </div>
         </div>
         <!-- end - Page Title & Breadcrumb -->
 
@@ -27,7 +24,7 @@
                     <div class="row">
 
                         <!-- Start - Blog Category Add -->
-                        {{-- <div class="col-xl-4">
+                        <div class="col-xl-12">
                             <div class="card card-collapse">
                                 <div class="card-header">
                                     <h4 class="card-title">{{ __('messages.add') }} {{ __('messages.news') }}</h4>
@@ -37,7 +34,7 @@
                                     </a>
                                 </div>
                                 <div class="collapsed collapse show" id="collapseFilter">
-
+                                    {{-- Add News Form --}}
                                     <div id="addNewsContainer">
                                         <form action="{{ route('news.store') }}" method="POST"
                                             enctype="multipart/form-data">
@@ -67,7 +64,7 @@
                                                         <div class="mb-3">
                                                             <label class="form-label">{{ __('messages.description') }}
                                                                 ({{ __('messages.english') }})</label>
-                                                            <textarea id="description_en" name="description[en]" cols="30" rows="2" class="form-control"></textarea>
+                                                            <textarea id="description_en" name="description[en]" cols="30" rows="2" class="ck-editor form-control"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane fade" id="es">
@@ -79,7 +76,7 @@
                                                         <div class="mb-3">
                                                             <label class="form-label">{{ __('messages.description') }}
                                                                 ({{ __('messages.spanish') }})</label>
-                                                            <textarea id="description_es" name="description[es]" cols="30" rows="2" class="form-control"></textarea>
+                                                            <textarea id="description_es" name="description[es]" cols="30" rows="2" class="ck-editor form-control"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,7 +98,7 @@
                                         </form>
                                     </div>
 
-
+                                    {{-- Edit News Form --}}
                                     <div id="editNewsContainer" style="display: none;">
                                         <form id="updateNewsForm" enctype="multipart/form-data">
                                             @csrf
@@ -139,7 +136,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="tab-pane fade" id="edit_es" >
+                                                    <div class="tab-pane fade" id="edit_es">
                                                         <div class="mb-3">
                                                             <label class="form-label">{{ __('messages.title') }}
                                                                 ({{ __('messages.spanish') }})</label>
@@ -156,7 +153,8 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label">{{ __('messages.news') }} {{ __('messages.image') }}</label>
+                                                    <label class="form-label">{{ __('messages.news') }}
+                                                        {{ __('messages.image') }}</label>
                                                     <input type="file" name="image" id="edit_image"
                                                         class="dropify-edit" accept="image/*">
                                                 </div>
@@ -172,45 +170,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
-                        <!-- End - Blog Category Add -->
-
-                        <!-- Start - Media Table -->
-                        <div class="col-xl-12">
-                            <div class="card card-collapse">
-                                <div class="card-header">
-                                    <h4 class="card-title"><i
-                                            class="fa-solid fa-file-lines me-1 text-primary"></i>{{ __('messages.news') }}
-                                        {{ __('messages.list') }}</h4>
-                                    <a class="collapse-indicator" data-bs-toggle="collapse" href="#collapseContactList"
-                                        role="button" aria-expanded="false" aria-controls="collapseContactList">
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </div>
-                                <div class="collapsed collapse show" id="collapseContactList">
-                                    <div class="card-body ">
-                                        <div class="table-responsive">
-                                            <table id="newsTable"
-                                                class="DataTable table  verticle-middle table-bordered  table-responsive-sm">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="">{{ __('messages.s.no') }}</th>
-                                                        <th scope="">{{ __('messages.title') }}</th>
-                                                        <th scope="col">{{ __('messages.image') }}</th>
-                                                        <th scope="col">{{ __('messages.status') }}</th>
-                                                        <th scope="col" class="text-end">{{ __('messages.actions') }}
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <!-- End - Blog Category Table -->
+                        <!-- End - Blog Category Add -->
 
                     </div>
                 </div>
@@ -224,180 +185,147 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
     <script>
-        let table = $('#newsTable').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
-            ajax: "{{ route('news.data') }}",
-
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                },
-                {
-                    data: 'title',
-                    name: 'title'
-                },
-                {
-                    data: 'image',
-                    name: 'image',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return data ?
-                            `<img src="${data}" width="50" height="50" class="rounded">` :
-                            `<span class="text-muted">No Image</span>`;
-                    }
-                },
-                {
-                    data: 'status',
-                    name: 'status',
-                    orderable: false,
-                    searchable: false
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false,
-                    class: 'text-end'
-                }
-            ],
-
-            order: [
-                [1, 'asc']
-            ],
-            pageLength: 10,
-            lengthMenu: [10, 25, 50, 100]
+        document.querySelectorAll('.ck-editor').forEach((el) => {
+            ClassicEditor
+                .create(el)
+                .catch(error => {
+                    console.error(error);
+                });
         });
+    </script>
+
+
+
+
+    <script>
 
 
         // Dropify Edit initialization
-        // let dropifyEdit;
+        let dropifyEdit;
 
-        // function initDropifyEdit(url = '') {
+        function initDropifyEdit(url = '') {
 
-        //     if (dropifyEdit) {
-        //         dropifyEdit.destroy();
-        //     }
+            if (dropifyEdit) {
+                dropifyEdit.destroy();
+            }
 
-        //     let input = $('#edit_image');
+            let input = $('#edit_image');
 
-        //     if (url) {
-        //         input.attr('data-default-file', url);
-        //     } else {
-        //         input.removeAttr('data-default-file');
-        //     }
+            if (url) {
+                input.attr('data-default-file', url);
+            } else {
+                input.removeAttr('data-default-file');
+            }
 
-        //     dropifyEdit = input.dropify().data('dropify');
-        // }
+            dropifyEdit = input.dropify().data('dropify');
+        }
 
 
         // Edit News
-        // $(document).on('click', '.editNews', function() {
+        $(document).on('click', '.editNews', function() {
 
-        //     let id = $(this).data('id');
+            let id = $(this).data('id');
 
-        //     $.ajax({
-        //         url: `/admin/news/${id}/edit`,
-        //         type: 'GET',
+            $.ajax({
+                url: `/admin/news/${id}/edit`,
+                type: 'GET',
 
-        //         success: function(response) {
+                success: function(response) {
 
-        //             $('#edit_news_id').val(response.id);
-        //             $('#edit_status').val(response.status);
+                    $('#edit_news_id').val(response.id);
+                    $('#edit_status').val(response.status);
 
-        //             // translations
-        //             $('#edit_title_en').val(response.title_en);
-        //             $('#edit_title_es').val(response.title_es);
+                    // translations
+                    $('#edit_title_en').val(response.title_en);
+                    $('#edit_title_es').val(response.title_es);
 
-        //             $('#edit_description_en').val(response.description_en);
-        //             $('#edit_description_es').val(response.description_es);
+                    $('#edit_description_en').val(response.description_en);
+                    $('#edit_description_es').val(response.description_es);
 
-        //             let image = response.image ?
-        //                 `{{ asset('uploads/fchcc_news') }}/${response.image}` :
-        //                 '';
+                    let image = response.image ?
+                        `{{ asset('uploads/fchcc_news') }}/${response.image}` :
+                        '';
 
-        //             initDropifyEdit(image);
+                    initDropifyEdit(image);
 
-        //             $('#addNewsContainer').hide();
-        //             $('#editNewsContainer').show();
+                    $('#addNewsContainer').hide();
+                    $('#editNewsContainer').show();
 
-        //             $('html, body').animate({
-        //                 scrollTop: $("#collapseFilter").offset().top - 100
-        //             }, 500);
-        //         }
-        //     });
+                    $('html, body').animate({
+                        scrollTop: $("#collapseFilter").offset().top - 100
+                    }, 500);
+                }
+            });
 
-        // });
+        });
 
 
         // Cancel Edit
-        // $('#cancelNewsEdit').on('click', function() {
+        $('#cancelNewsEdit').on('click', function() {
 
-        //     $('#editNewsContainer').hide();
-        //     $('#addNewsContainer').show();
+            $('#editNewsContainer').hide();
+            $('#addNewsContainer').show();
 
-        // });
+        });
 
 
         // Update News
-        // $('#updateNewsForm').on('submit', function(e) {
+        $('#updateNewsForm').on('submit', function(e) {
 
-        //     e.preventDefault();
+            e.preventDefault();
 
-        //     let id = $('#edit_news_id').val();
-        //     let formData = new FormData(this);
+            let id = $('#edit_news_id').val();
+            let formData = new FormData(this);
 
-        //     $.ajax({
+            $.ajax({
 
-        //         url: `/admin/news/${id}/update`,
-        //         type: 'POST',
-        //         data: formData,
+                url: `/admin/news/${id}/update`,
+                type: 'POST',
+                data: formData,
 
-        //         contentType: false,
-        //         processData: false,
+                contentType: false,
+                processData: false,
 
-        //         success: function(response) {
+                success: function(response) {
 
-        //             if (response.success) {
+                    if (response.success) {
 
-        //                 $('#editNewsContainer').hide();
-        //                 $('#addNewsContainer').show();
+                        $('#editNewsContainer').hide();
+                        $('#addNewsContainer').show();
 
-        //                 table.ajax.reload(null, false);
+                        table.ajax.reload(null, false);
 
-        //                 toastr.success(response.message, 'Success');
-        //             }
-        //         },
+                        toastr.success(response.message, 'Success');
+                    }
+                },
 
-        //         error: function(xhr) {
+                error: function(xhr) {
 
-        //             let errors = xhr.responseJSON?.errors;
+                    let errors = xhr.responseJSON?.errors;
 
-        //             if (errors) {
-        //                 let errorMsg = Object.values(errors)[0][0];
-        //                 toastr.error(errorMsg, 'Error');
-        //             } else if (xhr.responseJSON?.message) {
-        //                 toastr.error(xhr.responseJSON.message, 'Error');
-        //             }
-        //         }
+                    if (errors) {
+                        let errorMsg = Object.values(errors)[0][0];
+                        toastr.error(errorMsg, 'Error');
+                    } else if (xhr.responseJSON?.message) {
+                        toastr.error(xhr.responseJSON.message, 'Error');
+                    }
+                }
 
-        //     });
+            });
 
-        // });
+        });
 
 
 
-        // $(document).ready(function() {
+        $(document).ready(function() {
 
-        //     $('.nav-tabs a').click(function() {
-        //         $(this).tab('show');
-        //     });
+            $('.nav-tabs a').click(function() {
+                $(this).tab('show');
+            });
 
-        // });
+        });
     </script>
 @endpush

@@ -15,6 +15,11 @@ public function index()
         return view('backend.layout.news.index');
     }
 
+public function create()
+    {
+        return view('backend.layout.news.create');
+    }
+
 
  public function getData()
     {
@@ -131,7 +136,7 @@ public function index()
             ]);
         }
 
-        return redirect()->back()->with('success', 'FCHCC News added successfully');
+        return redirect()->route('news.index')->with('success', 'FCHCC News added successfully');
     }
 
 
