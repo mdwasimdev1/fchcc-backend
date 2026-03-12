@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\Backend\RoleController;
 use App\Http\Controllers\Web\Backend\EventController;
 use App\Http\Controllers\Web\Backend\FCHCCMediaController;
 use App\Http\Controllers\Web\Backend\PartnerController;
+use App\Http\Controllers\Web\Backend\NewsController;
 use App\Http\Controllers\Web\Backend\RolePermissionController;
 use App\Http\Controllers\Web\Backend\SalesforceController;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPagesController;
@@ -94,6 +95,19 @@ Route::controller(PartnerController::class)->group(function () {
      Route::post('/partner/{id}/update', 'update')->name('partner.update');
      Route::delete('/partner/delete', 'destroy')->name('partner.destroy');
      Route::post('/partner/status', 'toggleStatus')->name('partner.status');
+});
+
+
+// FCHCC News Routes
+Route::controller(NewsController::class)->group(function () {
+     Route::get('/news', 'index')->name('news.index');
+     Route::get('/news/create', 'create')->name('news.create');
+     Route::post('/news/store', 'store')->name('news.store');
+     Route::get('/news/data', 'getData')->name('news.data');
+     Route::get('/news/{id}/edit', 'edit')->name('news.edit');
+     Route::post('/news/{id}/update', 'update')->name('news.update');
+     Route::delete('/news/delete', 'destroy')->name('news.destroy');
+     Route::post('/news/status', 'toggleStatus')->name('news.status');
 });
 
 
@@ -259,7 +273,7 @@ Route::middleware(['auth', 'role:Super Admin'])->group(function () {
 Route::controller(StripeController::class)->group(function () {
      Route::get('/stripe', 'stripe')->name('stripe');
      Route::post('/stripe', 'stripePost')->name('stripe.post');
-}); 
+});
 
 
 

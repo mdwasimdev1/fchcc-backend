@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\API\FAQController;
 use App\Http\Controllers\API\FCHCCMediaController;
 use App\Http\Controllers\API\NewsletterController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\SystemSettingController;
@@ -50,6 +51,7 @@ Route::get('/sponsors', [SponsorController::class, 'index']);
 
 Route::get('/media', [FCHCCMediaController::class, 'index']);
 Route::get('/partners', [PartnerController::class, 'index']);
+Route::get('/news', [NewsController::class, 'index']);
 
 // Salesforce Integration Routes
 Route::prefix('salesforce')->middleware('api')->group(function () {

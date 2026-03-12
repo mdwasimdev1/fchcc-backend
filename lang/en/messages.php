@@ -23,6 +23,7 @@ return [
     'user' => 'User',
     'event' => 'Event',
     'partner' => 'Partner',
+    'news' => 'News',
 
 
 
