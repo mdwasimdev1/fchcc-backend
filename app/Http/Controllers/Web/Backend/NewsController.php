@@ -81,9 +81,9 @@ public function create()
             ->addColumn('action', function ($row) {
                 return '
             <div class="d-flex align-items-center gap-1 justify-content-end">
-                <button class="btn btn-sm btn-outline-primary me-1 editNews" data-id="' . $row->id . '">
+                <a href="' . route('news.edit', $row->id) . '" class="btn btn-sm btn-outline-primary me-1">
                     <i class="fa fa-edit"></i>
-                </button>
+                </a>
 
                 <button class="btn btn-sm btn-outline-danger delete-item"
                         data-id="' . $row->id . '"
@@ -140,27 +140,11 @@ public function create()
     }
 
 
- public function edit($id)
+    public function edit($id)
     {
         $news = News::with('translations')->findOrFail($id);
 
-        $title_en = optional($news->translations->where('locale', 'en')->first())->title;
-        $title_es = optional($news->translations->where('locale', 'es')->first())->title;
-
-        $description_en = optional($news->translations->where('locale', 'en')->first())->description;
-        $description_es = optional($news->translations->where('locale', 'es')->first())->description;
-
-        return response()->json([
-            'id' => $news->id,
-            'image' => $news->image,
-            'status' => $news->status,
-
-            'title_en' => $title_en,
-            'title_es' => $title_es,
-
-            'description_en' => $description_en,
-            'description_es' => $description_es,
-        ]);
+        return view('backend.layout.news.edit', compact('news'));
     }
 
 

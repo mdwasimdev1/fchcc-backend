@@ -55,10 +55,14 @@ Route::get('/news', [NewsController::class, 'index']);
 
 // Salesforce Integration Routes
 Route::prefix('salesforce')->middleware('api')->group(function () {
+    // New Feature Routes
+    Route::post('/leads', [SalesforceController::class, 'createLead']);
+    Route::post('/leads/async', [SalesforceController::class, 'createLeadAsync']);
+    Route::post('/contacts', [SalesforceController::class, 'createContact']);
+
+    // Original Generic Compatibility Routes
     Route::get('/accounts', [SalesforceController::class, 'accounts']);
     Route::post('/query', [SalesforceController::class, 'query']);
-    Route::post('/create', [SalesforceController::class, 'create']);
-    Route::post('/update', [SalesforceController::class, 'update']);
     Route::get('/find', [SalesforceController::class, 'find']);
     Route::post('/refresh-token', [SalesforceController::class, 'refreshToken']);
 });
