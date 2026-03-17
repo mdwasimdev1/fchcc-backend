@@ -24,6 +24,15 @@ return [
     'event' => 'Evento',
     'partner' => 'Socio',
     'news' => 'Noticias',
+    'banners' => 'Pancartas',
+    'home-banners' => 'Pancartas de la página principal',
+    'event-banners' => 'Pancartas de eventos',
+    'community-banners' => 'Pancartas de la comunidad',
+    'scholarship-banners' => 'Pancartas de becas',
+    'partner-banners' => 'Pancartas de socios',
+    'member-banners' => 'Pancartas de miembros',
+    'discount-banners' => 'Pancartas de descuentos',
+
 
 
 

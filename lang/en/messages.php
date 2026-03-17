@@ -24,6 +24,15 @@ return [
     'event' => 'Event',
     'partner' => 'Partner',
     'news' => 'News',
+    'banners' => 'Banners',
+    'home-banners' => 'Home Banners',
+    'event-banners' => 'Event Banners',
+    'community-banners' => 'Community Banners',
+    'scholarship-banners' => 'Scholarship Banners',
+    'partner-banners' => 'Partner Banners',
+    'member-banners' => 'Member Banners',
+    'discount-banners' => 'Discount Banners',
+
 
 
 
