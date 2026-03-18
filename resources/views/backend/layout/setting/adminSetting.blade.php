@@ -54,8 +54,9 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Mini Logo</label>
-                                                            <input type="file" id="admin_mini_logo" name="admin_mini_logo"
-                                                                class="dropify form-control" accept="image/*"
+                                                            <input type="file" id="admin_mini_logo"
+                                                                name="admin_mini_logo" class="dropify form-control"
+                                                                accept="image/*"
                                                                 data-allowed-file-extensions="jpg png jpeg webp"
                                                                 data-max-file-size="12M"
                                                                 @isset($setting->admin_mini_logo)
@@ -69,33 +70,54 @@
                                                                 class="dropify form-control" accept="image/*"
                                                                 data-allowed-file-extensions="jpg png jpeg webp"
                                                                 data-max-file-size="12M"
-                                                                 @isset($setting->admin_favicon)
+                                                                @isset($setting->admin_favicon)
                                                                   data-default-file="{{ asset('uploads/setting/admin/' . $setting->admin_favicon) }}"
                                                                @endisset>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-12">
-                                                        <div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Title</label>
-                                                                <input type="text" name="admin_title"
-                                                                    value="{{ $setting->admin_title ?? '' }}"
-                                                                    class="form-control">
+
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Title (English)</label>
+                                                                <input type="text" name="admin_title[en]"
+                                                                    value="{{ $setting->admin_title_en ?? '' }}"
+                                                                    class="form-control w-100">
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Short Title</label>
-                                                                <input type="text" name="admin_short_title"
-                                                                    value="{{ $setting->admin_short_title ?? '' }}"
-                                                                    class="form-control">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Title (Spanish)</label>
+                                                                <input type="text" name="admin_title[es]"
+                                                                    value="{{ $setting->admin_title_es ?? '' }}"
+                                                                    class="form-control w-100">
                                                             </div>
                                                         </div>
-
-
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Copyright text</label>
-                                                            <input type="text" name="admin_copyright_text"
-                                                                value="{{ $setting->admin_copyright_text ?? '' }}"
-                                                                class="form-control">
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Short Title (English)</label>
+                                                                <input type="text" name="admin_short_title[en]"
+                                                                    value="{{ $setting->admin_short_title_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Short Title (Spanish)</label>
+                                                                <input type="text" name="admin_short_title[es]"
+                                                                    value="{{ $setting->admin_short_title_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Copy Right (English)</label>
+                                                                <input type="text" name="admin_copyright[en]"
+                                                                    value="{{ $setting->admin_copyright_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Copy Right (Spanish)</label>
+                                                                <input type="text" name="admin_copyright[es]"
+                                                                    value="{{ $setting->admin_copyright_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -145,7 +167,7 @@
     </script> --}}
     <script>
         $(document).ready(function() {
-            
+
 
             if (logoUrl) {
                 $('#admin_logo').attr('data-default-file', logoUrl);
