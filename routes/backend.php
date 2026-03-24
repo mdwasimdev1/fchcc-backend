@@ -249,6 +249,8 @@ Route::controller(BannerController::class)->group(function () {
      Route::post('/banner/{id}/update', 'updateHomeBanner')->name('banner.update');
      Route::get('/banner/event', 'editEventBanner')->name('banner.event');
      Route::post('/banner/event/{id}/update', 'updateEventBanner')->name('banner.event.update');
+     Route::get('/banner/partner', 'editPartnerBanner')->name('banner.partner');
+     Route::post('/banner/partner/{id}/update', 'updatePartnerBanner')->name('banner.partner.update');
 });
 
 

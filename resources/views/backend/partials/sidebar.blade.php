@@ -33,7 +33,7 @@
                       </li>
                       <li><a href="{{ route('admin.setting.mail') }}"
                               >{{ __('messages.scholarship-banners') }}</a></li>
-                      <li><a href="{{ route('stripe') }}"
+                      <li><a href="{{ route('banner.partner') }}"
                               >{{ __('messages.partner-banners') }}</a>
                       </li>
                         <li><a href="{{ route('stripe') }}"
