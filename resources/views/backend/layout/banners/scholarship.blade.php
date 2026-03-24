@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'Community Banner')
+@section('title', 'Scholarship Banner')
 
 @section('content')
     <main class="content-body">
@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Community Banner</li>
+                    <li class="breadcrumb-item active" aria-current="page">Scholarship Banner</li>
                 </ol>
             </nav>
         </div>
@@ -23,7 +23,7 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Community Banner</h4>
+                            <h4 class="card-title">Edit Scholarship Banner</h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -45,7 +45,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('banner.community.update', ['id' => $banner->id]) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('banner.scholarship.update', ['id' => $banner->id]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">

@@ -251,6 +251,14 @@ Route::controller(BannerController::class)->group(function () {
      Route::post('/banner/event/{id}/update', 'updateEventBanner')->name('banner.event.update');
      Route::get('/banner/partner', 'editPartnerBanner')->name('banner.partner');
      Route::post('/banner/partner/{id}/update', 'updatePartnerBanner')->name('banner.partner.update');
+     Route::get('/banner/community', 'editCommunityBanner')->name('banner.community');
+     Route::post('/banner/community/{id}/update', 'updateCommunityBanner')->name('banner.community.update');
+     Route::get('/banner/scholarship', 'editScholarshipBanner')->name('banner.scholarship');
+     Route::post('/banner/scholarship/{id}/update', 'updateScholarshipBanner')->name('banner.scholarship.update');
+     Route::get('/banner/member', 'editMemberBanner')->name('banner.member');
+     Route::post('/banner/member/{id}/update', 'updateMemberBanner')->name('banner.member.update');
+     Route::get('/banner/discount', 'editDiscountBanner')->name('banner.discount');
+     Route::post('/banner/discount/{id}/update', 'updateDiscountBanner')->name('banner.discount.update');
 });
 
 

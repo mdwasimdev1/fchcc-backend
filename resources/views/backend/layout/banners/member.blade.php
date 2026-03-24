@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'Community Banner')
+@section('title', 'Member Banner')
 
 @section('content')
     <main class="content-body">
@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Community Banner</li>
+                    <li class="breadcrumb-item active" aria-current="page">Member Banner</li>
                 </ol>
             </nav>
         </div>
@@ -23,7 +23,7 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Community Banner</h4>
+                            <h4 class="card-title">Edit Member Banner</h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -45,22 +45,25 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('banner.community.update', ['id' => $banner->id]) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('banner.member.update', ['id' => $banner->id]) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
 
+                                <!-- Banner Image -->
                                 <div class="mb-3">
                                     <label class="form-label">Banner Image</label>
                                     <input type="file" name="image" class="dropify" accept="image/*"
                                         data-allowed-file-extensions="jpg png jpeg webp"
                                         data-max-file-size="12M"
                                         @isset($banner->image)
-                                        data-default-file="{{ asset('uploads/banners/' . $banner->image) }}"
-                                        @endisset>
+                                          data-default-file="{{ asset('uploads/banners/' . $banner->image) }}"
+                                       @endisset>
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
+                                <!-- Title Section -->
                                 <div class="d-flex gap-3 flex-wrap">
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Title (English)</label>
@@ -82,23 +85,27 @@
                                     </div>
                                 </div>
 
+                                <!-- Description Section -->
                                 <div class="d-flex gap-3 flex-wrap">
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Description (English)</label>
-                                        <textarea name="description_en" rows="3" class="form-control" placeholder="Enter banner description in English">{{ $banner->translations->where('locale', 'en')->first()->description ?? '' }}</textarea>
+                                        <textarea name="description_en" rows="3" class="form-control"
+                                            placeholder="Enter banner description in English">{{ $banner->translations->where('locale', 'en')->first()->description ?? '' }}</textarea>
                                         @error('description_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Description (Spanish)</label>
-                                        <textarea name="description_es" rows="3" class="form-control" placeholder="Enter banner description in Spanish">{{ $banner->translations->where('locale', 'es')->first()->description ?? '' }}</textarea>
+                                        <textarea name="description_es" rows="3" class="form-control"
+                                            placeholder="Enter banner description in Spanish">{{ $banner->translations->where('locale', 'es')->first()->description ?? '' }}</textarea>
                                         @error('description_es')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
 
+                                <!-- Button Text Section -->
                                 <div class="d-flex gap-3 flex-wrap">
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Button Text (English)</label>
@@ -120,6 +127,7 @@
                                     </div>
                                 </div>
 
+                                <!-- Button URL -->
                                 <div class="mb-3">
                                     <label class="form-label">Button URL</label>
                                     <input type="url" name="button_url" value="{{ $banner->button_url ?? '' }}"
@@ -129,18 +137,22 @@
                                     @enderror
                                 </div>
 
+                                <!-- Status -->
                                 <div class="mb-3">
                                     <label class="form-label">Status</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" name="status" value="1"
-                                            id="communityBannerStatus" {{ $banner->status ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="communityBannerStatus">Active</label>
+                                            id="bannerStatus" {{ $banner->status ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="bannerStatus">
+                                            Active
+                                        </label>
                                     </div>
                                     @error('status')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
+                                <!-- Submit Button -->
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">Update Banner</button>
                                     <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>

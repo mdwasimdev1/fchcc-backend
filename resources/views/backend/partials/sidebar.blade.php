@@ -22,26 +22,13 @@
                           data-i18n="{{ __('messages.banners') }}">{{ __('messages.banners') }}</span>
                   </a>
                   <ul aria-expanded="false">
-                      <li><a href="{{ route('banner.home') }}"
-                              >{{ __('messages.home-banners') }}</a>
-                      </li>
-                      <li><a href="{{ route('banner.event') }}"
-                             >{{ __('messages.event-banners') }}</a>
-                      </li>
-                      <li><a href="#"
-                              >{{ __('messages.community-banners') }}</a>
-                      </li>
-                      <li><a href="{{ route('admin.setting.mail') }}"
-                              >{{ __('messages.scholarship-banners') }}</a></li>
-                      <li><a href="{{ route('banner.partner') }}"
-                              >{{ __('messages.partner-banners') }}</a>
-                      </li>
-                        <li><a href="{{ route('stripe') }}"
-                                >{{ __('messages.member-banners') }}</a>
-                        </li>
-                        <li><a href="{{ route('stripe') }}"
-                                >{{ __('messages.discount-banners') }}</a>
-                        </li>
+                      <li><a href="{{ route('banner.home') }}">{{ __('messages.home-banners') }}</a></li>
+                      <li><a href="{{ route('banner.event') }}">{{ __('messages.event-banners') }}</a></li>
+                      <li><a href="{{ route('banner.community') }}" >{{ __('messages.community-banners') }}</a></li>
+                      <li><a href="{{ route('banner.scholarship') }}">{{ __('messages.scholarship-banners') }}</a></li>
+                      <li><a href="{{ route('banner.partner') }}">{{ __('messages.partner-banners') }}</a></li>
+                      <li><a href="{{ route('banner.member') }}" >{{ __('messages.member-banners') }}</a></li>
+                      <li><a href="{{ route('banner.discount') }}" >{{ __('messages.discount-banners') }}</a></li>
                   </ul>
               </li>
               <li>

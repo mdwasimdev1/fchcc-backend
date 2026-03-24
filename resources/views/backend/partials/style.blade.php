@@ -1,5 +1,9 @@
 <!-- FAVICONS ICON -->
-<link rel="shortcut icon" type="image/png" href="{{ asset('uploads/setting/admin/' . $setting->admin_favicon) }}">
+@php
+    $adminFavicon = optional($setting)->admin_favicon;
+    $adminFaviconPath = $adminFavicon ? 'uploads/setting/admin/' . $adminFavicon : 'backend/app-assets/images/default-favicon.png';
+@endphp
+<link rel="shortcut icon" type="image/png" href="{{ asset($adminFaviconPath) }}">
 
 <link href="{{ asset('backend/app-assets/vendor/@yaireo/tagify/dist/tagify.css') }}" rel="stylesheet">
 <link href="{{ asset('backend/app-assets/vendor/metismenu/dist/metisMenu.min.css') }}" rel="stylesheet">

@@ -25,10 +25,15 @@ class SystemSettingSeeder extends Seeder
                 'time_zone' => 'UTC',
                 'language' => 'en',
                 'copyright_text' => '© 2026 Admin Template',
-                
+
                 'admin_title' => 'Admin Dashboard',
                 'admin_short_title' => 'AD',
                 'admin_copyright_text' => 'Design & Develop by DevScout24',
+
+                'logo' => 'uploads/setting/system/1772307103_pngtree-blue-eagle-logo-png-image_20949443.png',
+                'minilogo' => 'uploads/setting/system/1772307103_pngtree-blue-eagle-logo-png-image_20949443.png',
+                'admin_logo' => '1772307038_pngtree-blue-eagle-logo-png-image_20949443.png',
+                'admin_mini_logo' => '1772307038_pngtree-blue-eagle-logo-png-image_20949443.png',
             ]
         );
     }

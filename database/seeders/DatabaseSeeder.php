@@ -15,8 +15,11 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             UserSeeder::class,
             SystemSettingSeeder::class,
-            ProductSeeder::class,
             EventSeeder::class,
-        ]);
+            HomeBannerSeeder::class,
+            EventBannerSeeder::class,
+            ScholarshipBannerSeeder::class,
+            PartnerBannerSeeder::class,
+            CommunityBannerSeeder::class,]);
     }
 }
