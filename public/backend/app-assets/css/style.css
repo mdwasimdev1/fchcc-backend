@@ -161,6 +161,11 @@ html[data-bs-theme="dark"] .icnav-scroll {
 
 /* custom CSS for Dropify  */
 
+.dropify-wrapper .dropify-message p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 [data-bs-theme="dark"] .dropify-wrapper {
   background-color: #1E1E1E;
   /* dark background */
@@ -168,6 +173,7 @@ html[data-bs-theme="dark"] .icnav-scroll {
   /* darker border */
   color: #fff;
   /* text color */
+font-size: 20px;
 }
 
 [data-bs-theme="dark"] .dropify-message p {

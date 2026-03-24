@@ -89,6 +89,12 @@
     });
 </script>
 
+<style>
+.dropify-message span {
+    font-size: 24px !important;
+}
+</style>
+
 <script>
     $.ajaxSetup({
         headers: {

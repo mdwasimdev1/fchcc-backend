@@ -22,10 +22,10 @@
                           data-i18n="{{ __('messages.banners') }}">{{ __('messages.banners') }}</span>
                   </a>
                   <ul aria-expanded="false">
-                      <li><a href="{{ route('profile') }}"
+                      <li><a href="{{ route('banner.home') }}"
                               >{{ __('messages.home-banners') }}</a>
                       </li>
-                      <li><a href="#"
+                      <li><a href="{{ route('banner.event') }}"
                              >{{ __('messages.event-banners') }}</a>
                       </li>
                       <li><a href="#"

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Backend\Admin\FAQController;
+use App\Http\Controllers\Web\Backend\BannerController;
 use App\Http\Controllers\Web\Backend\CategoryController;
 use App\Http\Controllers\Web\backend\DashboardController;
 use App\Http\Controllers\Web\Backend\ProductController;
@@ -241,6 +242,14 @@ Route::controller(SystemSettingController::class)->group(function () {
 });
 
 
+
+// Banner Routes
+Route::controller(BannerController::class)->group(function () {
+     Route::get('/banner/home', 'editHomeBanner')->name('banner.home');
+     Route::post('/banner/{id}/update', 'updateHomeBanner')->name('banner.update');
+     Route::get('/banner/event', 'editEventBanner')->name('banner.event');
+     Route::post('/banner/event/{id}/update', 'updateEventBanner')->name('banner.event.update');
+});
 
 
 

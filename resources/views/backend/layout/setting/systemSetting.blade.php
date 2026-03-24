@@ -48,7 +48,7 @@
                                                                 accept="image/*"
                                                                 data-allowed-file-extensions="jpg png jpeg webp"
                                                                 data-max-file-size="12M"
-                                                                 @isset($setting->logo)
+                                                                @isset($setting->logo)
                                                                   data-default-file="{{ asset('uploads/setting/system/' . $setting->logo) }}"
                                                                @endisset>
                                                         </div>
@@ -58,7 +58,7 @@
                                                                 accept="image/*"
                                                                 data-allowed-file-extensions="jpg png jpeg webp"
                                                                 data-max-file-size="12M"
-                                                                 @isset($setting->minilogo)
+                                                                @isset($setting->minilogo)
                                                                   data-default-file="{{ asset('uploads/setting/system/' . $setting->minilogo) }}"
                                                                @endisset>
                                                         </div>
@@ -70,31 +70,68 @@
                                                                 data-max-file-size="12M"
                                                                 @isset($setting->favicon)
                                                                   data-default-file="{{ asset('uploads/setting/system/' . $setting->favicon) }}"
-                                                               @endisset
-                                                               >
+                                                               @endisset>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-12">
-                                                        <div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Title</label>
-                                                                <input type="text" name="system_title" value="{{ $setting->system_title ?? '' }}"
-                                                                    class="form-control">
+
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Title (English)</label>
+                                                                <input type="text" name="system_title[en]"
+                                                                    value="{{ $setting->system_title_en ?? '' }}"
+                                                                    class="form-control w-100">
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Short Title</label>
-                                                                <input type="text" name="system_short_title" value="{{ $setting->system_short_title ?? '' }}"
-                                                                    class="form-control">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Title (Spanish)</label>
+                                                                <input type="text" name="system_title[es]"
+                                                                    value="{{ $setting->system_title_es ?? '' }}"
+                                                                    class="form-control w-100">
                                                             </div>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Tag Line</label>
-                                                            <input type="text" name="tag_line" value="{{ $setting->tag_line ?? '' }}" class="form-control">
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Short Title (English)</label>
+                                                                <input type="text" name="system_short_title[en]"
+                                                                    value="{{ $setting->system_short_title_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Short Title (Spanish)</label>
+                                                                <input type="text" name="system_short_title[es]"
+                                                                    value="{{ $setting->system_short_title_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Company Name</label>
-                                                            <input type="text" name="company_name" value="{{ $setting->company_name ?? '' }}" class="form-control">
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Tag Line (English)</label>
+                                                                <input type="text" name="tag_line[en]"
+                                                                    value="{{ $setting->tag_line_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Tag Line (Spanish)</label>
+                                                                <input type="text" name="tag_line[es]"
+                                                                    value="{{ $setting->tag_line_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
                                                         </div>
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Company Name (English)</label>
+                                                                <input type="text" name="company_name[en]"
+                                                                    value="{{ $setting->company_name_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Company Name (Spanish)</label>
+                                                                <input type="text" name="company_name[es]"
+                                                                    value="{{ $setting->company_name_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                        </div>
+
 
                                                         <div class="mb-3">
                                                             <div class="form-group">
@@ -334,14 +371,26 @@
 
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="email" name="email" value="{{ $setting->email ?? '' }}" class="form-control">
+                                                            <input type="email" name="email"
+                                                                value="{{ $setting->email ?? '' }}" class="form-control">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Copyright text</label>
-                                                            <input type="text" name="copyright_text" value="{{ $setting->copyright_text ?? '' }}" class="form-control">
+                                                        <div class="d-flex gap-3 flex-wrap">
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Copy Right (English)</label>
+                                                                <input type="text" name="system_copyright[en]"
+                                                                    value="{{ $setting->system_copyright_en ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
+                                                            <div class="mb-3 flex-fill">
+                                                                <label class="form-label">Copy Right (Spanish)</label>
+                                                                <input type="text" name="system_copyright[es]"
+                                                                    value="{{ $setting->system_copyright_es ?? '' }}"
+                                                                    class="form-control w-100">
+                                                            </div>
                                                         </div>
 
                                                     </div>
+
                                                 </div>
 
                                                 <div class="clearfix">

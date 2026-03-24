@@ -12,78 +12,183 @@ class SystemSettingController extends Controller
 {
     public function systemSetting()
     {
-        $setting = SystemSetting::first();
+        $setting = SystemSetting::with('translations')->first();
         return view('backend.layout.setting.systemSetting', compact('setting'));
     }
 
-    public function systemSettingUpdate(Request $request)
-    {
-        
 
-        $request->validate([
-            'system_title' => 'required|string|max:150',
-            'system_short_title' => 'nullable|string|max:100',
-            'tag_line' => 'nullable|string|max:255',
-            'company_name' => 'required|string|max:150',
-            'phone_code' => 'required|string|max:5',
-            'phone_number' => 'required|string|max:15|regex:/^\d+$/',
-            'email' => 'required|email|max:150',
-            'copyright_text' => 'nullable|string|max:500',
-        ]);
+public function systemSettingUpdate(Request $request)
+{
+    // ✅ Validation (correct array format)
+    $request->validate([
+        'system_title.en' => 'required|string|max:150',
+        'system_title.es' => 'required|string|max:150',
 
-        $setting = SystemSetting::first();
+        'system_short_title.en' => 'nullable|string|max:100',
+        'system_short_title.es' => 'nullable|string|max:100',
 
-        if (!$setting) {
-            $setting = new SystemSetting();
-        }
+        'tag_line.en' => 'nullable|string|max:255',
+        'tag_line.es' => 'nullable|string|max:255',
 
-        if ($request->hasFile('logo')) {
+        'company_name.en' => 'required|string|max:150',
+        'company_name.es' => 'required|string|max:150',
 
-            if ($setting->logo && file_exists(public_path('uploads/setting/system/' . $setting->logo))) {
-                unlink(public_path('uploads/setting/system/' . $setting->logo));
-            }
+        'copyright_text.en' => 'nullable|string|max:500',
+        'copyright_text.es' => 'nullable|string|max:500',
 
-            $logo = $request->file('logo');
-            $systemLogo = time() . '_' . $logo->getClientOriginalName();
-            $logo->move(public_path('uploads/setting/system/'), $systemLogo);
-            $setting->logo = $systemLogo;
-        }
-        if ($request->hasFile('minilogo')) {
+        'phone_code' => 'required|string|max:5',
+        'phone_number' => 'required|string|max:15|regex:/^\d+$/',
+        'email' => 'required|email|max:150',
+    ]);
 
-            if ($setting->minilogo && file_exists(public_path('uploads/setting/system/' . $setting->minilogo))) {
-                unlink(public_path('uploads/setting/system/' . $setting->minilogo));
-            }
-
-            $minilogo = $request->file('minilogo');
-            $systemMiniLogo = time() . '_' . $minilogo->getClientOriginalName();
-            $minilogo->move(public_path('uploads/setting/system/'), $systemMiniLogo);
-            $setting->minilogo = $systemMiniLogo;
-        }
-        if ($request->hasFile('favicon')) {
-
-            if ($setting->favicon && file_exists(public_path('uploads/setting/system/' . $setting->favicon))) {
-                unlink(public_path('uploads/setting/system/' . $setting->favicon));
-            }
-
-            $favicon = $request->file('favicon');
-            $systemFavicon = time() . '_' . $favicon->getClientOriginalName();
-            $favicon->move(public_path('uploads/setting/system/'), $systemFavicon);
-            $setting->favicon = $systemFavicon;
-        }
-
-        $setting->system_title       = $request->system_title;
-        $setting->system_short_title = $request->system_short_title;
-        $setting->tag_line           = $request->tag_line;
-        $setting->company_name       = $request->company_name;
-        $setting->phone_code         = $request->phone_code;
-        $setting->phone_number       = $request->phone_number;
-        $setting->email              = $request->email;
-        $setting->copyright_text          = $request->copyright_text;
-
-        $setting->save();
-
-        return redirect()->back()->with('success', 'System settings updated successfully.');
+    // ✅ Get or create single row
+    $setting = SystemSetting::first();
+    if (!$setting) {
+        $setting = new SystemSetting();
     }
+
+    // ================================
+    // ✅ FILE UPLOAD (same as yours)
+    // ================================
+
+    if ($request->hasFile('logo')) {
+        if ($setting->logo && file_exists(public_path('uploads/setting/system/' . $setting->logo))) {
+            unlink(public_path('uploads/setting/system/' . $setting->logo));
+        }
+
+        $file = $request->file('logo');
+        $name = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads/setting/system/'), $name);
+        $setting->logo = $name;
+    }
+
+    if ($request->hasFile('minilogo')) {
+        if ($setting->minilogo && file_exists(public_path('uploads/setting/system/' . $setting->minilogo))) {
+            unlink(public_path('uploads/setting/system/' . $setting->minilogo));
+        }
+
+        $file = $request->file('minilogo');
+        $name = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads/setting/system/'), $name);
+        $setting->minilogo = $name;
+    }
+
+    if ($request->hasFile('favicon')) {
+        if ($setting->favicon && file_exists(public_path('uploads/setting/system/' . $setting->favicon))) {
+            unlink(public_path('uploads/setting/system/' . $setting->favicon));
+        }
+
+        $file = $request->file('favicon');
+        $name = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads/setting/system/'), $name);
+        $setting->favicon = $name;
+    }
+
+    // ================================
+    // ✅ NON-TRANSLATABLE SAVE
+    // ================================
+
+    $setting->phone_code   = $request->phone_code;
+    $setting->phone_number = $request->phone_number;
+    $setting->email        = $request->email;
+
+    $setting->save();
+
+    // ================================
+    // ✅ TRANSLATION SAVE (MAIN PART 🔥)
+    // ================================
+
+    foreach (['en', 'es'] as $locale) {
+
+        $setting->translations()->updateOrCreate(
+            [
+                'locale' => $locale
+            ],
+            [
+                'system_title'       => $request->system_title[$locale] ?? null,
+                'system_short_title' => $request->system_short_title[$locale] ?? null,
+                'tag_line'           => $request->tag_line[$locale] ?? null,
+                'company_name'       => $request->company_name[$locale] ?? null,
+                'copyright_text'     => $request->copyright_text[$locale] ?? null,
+            ]
+        );
+    }
+
+    return redirect()->back()->with('success', 'System settings updated successfully.');
+}
+
+    // public function systemSettingUpdate(Request $request)
+    // {
+
+
+    //     $request->validate([
+    //         'system_title[en]' => 'required|string|max:150',
+    //         'system_title[es]' => 'required|string|max:150',
+    //         'system_short_title[en]' => 'nullable|string|max:100',
+    //         'system_short_title[es]' => 'nullable|string|max:100',
+    //         'tag_line[en]' => 'nullable|string|max:255',
+    //         'tag_line[es]' => 'nullable|string|max:255',
+    //         'company_name[en]' => 'required|string|max:150',
+    //         'company_name[es]' => 'required|string|max:150',
+    //         'phone_code' => 'required|string|max:5',
+    //         'phone_number' => 'required|string|max:15|regex:/^\d+$/',
+    //         'email' => 'required|email|max:150',
+    //         'copyright_text' => 'nullable|string|max:500',
+    //     ]);
+
+    //     $setting = SystemSetting::first();
+
+    //     if (!$setting) {
+    //         $setting = new SystemSetting();
+    //     }
+
+    //     if ($request->hasFile('logo')) {
+
+    //         if ($setting->logo && file_exists(public_path('uploads/setting/system/' . $setting->logo))) {
+    //             unlink(public_path('uploads/setting/system/' . $setting->logo));
+    //         }
+
+    //         $logo = $request->file('logo');
+    //         $systemLogo = time() . '_' . $logo->getClientOriginalName();
+    //         $logo->move(public_path('uploads/setting/system/'), $systemLogo);
+    //         $setting->logo = $systemLogo;
+    //     }
+    //     if ($request->hasFile('minilogo')) {
+
+    //         if ($setting->minilogo && file_exists(public_path('uploads/setting/system/' . $setting->minilogo))) {
+    //             unlink(public_path('uploads/setting/system/' . $setting->minilogo));
+    //         }
+
+    //         $minilogo = $request->file('minilogo');
+    //         $systemMiniLogo = time() . '_' . $minilogo->getClientOriginalName();
+    //         $minilogo->move(public_path('uploads/setting/system/'), $systemMiniLogo);
+    //         $setting->minilogo = $systemMiniLogo;
+    //     }
+    //     if ($request->hasFile('favicon')) {
+
+    //         if ($setting->favicon && file_exists(public_path('uploads/setting/system/' . $setting->favicon))) {
+    //             unlink(public_path('uploads/setting/system/' . $setting->favicon));
+    //         }
+
+    //         $favicon = $request->file('favicon');
+    //         $systemFavicon = time() . '_' . $favicon->getClientOriginalName();
+    //         $favicon->move(public_path('uploads/setting/system/'), $systemFavicon);
+    //         $setting->favicon = $systemFavicon;
+    //     }
+
+    //     $setting->system_title       = $request->system_title;
+    //     $setting->system_short_title = $request->system_short_title;
+    //     $setting->tag_line           = $request->tag_line;
+    //     $setting->company_name       = $request->company_name;
+    //     $setting->phone_code         = $request->phone_code;
+    //     $setting->phone_number       = $request->phone_number;
+    //     $setting->email              = $request->email;
+    //     $setting->copyright_text          = $request->copyright_text;
+
+    //     $setting->save();
+
+    //     return redirect()->back()->with('success', 'System settings updated successfully.');
+    // }
 
     public function adminSetting()
     {

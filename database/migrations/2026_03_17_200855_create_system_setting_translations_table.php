@@ -13,7 +13,22 @@ return new class extends Migration
     {
         Schema::create('system_setting_translations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('system_setting_id')->constrained()->cascadeOnDelete();
+            $table->string('locale');
+
+             // Translatable fields
+             $table->string('system_title', 150)->nullable();
+             $table->string('system_short_title', 100)->nullable();
+             $table->string('company_name', 150)->nullable();
+             $table->string('tag_line', 255)->nullable();
+             $table->text('copyright_text')->nullable();
+
+            $table->string('admin_title', 150)->nullable();
+            $table->string('admin_short_title', 100)->nullable();
+            $table->text('admin_copyright_text')->nullable();
+
             $table->timestamps();
+
         });
     }
 
