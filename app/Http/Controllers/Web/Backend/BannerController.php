@@ -9,38 +9,18 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    /**
-     * Show the home banner edit form
-     */
     public function editHomeBanner()
     {
-        // Get the first/main home banner
-        $banner = HomeBanner::first();
 
-        // If no banner exists, create a default one
-        if (!$banner) {
-            $banner = HomeBanner::create([
-                'status' => 1,
-            ]);
-
-            // Create default translations
-            $banner->translations()->createMany([
-                ['locale' => 'en', 'title' => '', 'description' => '', 'button_text' => ''],
-                ['locale' => 'es', 'title' => '', 'description' => '', 'button_text' => ''],
-            ]);
-        }
+        $banner = HomeBanner::with('translations')->first();
 
         return view('backend.layout.banners.home', compact('banner'));
     }
 
-    /**
-     * Update the home banner
-     */
     public function updateHomeBanner(Request $request, $id)
     {
         $banner = HomeBanner::findOrFail($id);
 
-        // Validate input
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:12288',
             'button_url' => 'nullable|url',
@@ -53,9 +33,7 @@ class BannerController extends Controller
             'button_text_es' => 'nullable|string|max:100',
         ]);
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image if exists
             if ($banner->image && file_exists(public_path('uploads/banners/' . $banner->image))) {
                 unlink(public_path('uploads/banners/' . $banner->image));
             }
@@ -70,7 +48,6 @@ class BannerController extends Controller
         $banner->status = $request->boolean('status');
         $banner->save();
 
-        // Update translations
         $enTranslation = $banner->translations()->where('locale', 'en')->first();
         if ($enTranslation) {
             $enTranslation->update([
@@ -92,33 +69,16 @@ class BannerController extends Controller
         return redirect()->back()->with('success', 'Home banner updated successfully!');
     }
 
-    /**
-     * Show the event banner edit form
-     */
+
+
+// Event Banner Methods
     public function editEventBanner()
     {
-        // Get the first/main event banner
-        $banner = EventBanner::first();
-
-        // If no banner exists, create a default one
-        if (!$banner) {
-            $banner = EventBanner::create([
-                'status' => 1,
-            ]);
-
-            // Create default translations
-            $banner->translations()->createMany([
-                ['locale' => 'en', 'title' => '', 'description' => '', 'button_text' => ''],
-                ['locale' => 'es', 'title' => '', 'description' => '', 'button_text' => ''],
-            ]);
-        }
-
+        $banner = EventBanner::with('translations')->first();
         return view('backend.layout.banners.event', compact('banner'));
     }
 
-    /**
-     * Update the event banner
-     */
+
     public function updateEventBanner(Request $request, $id)
     {
         $banner = EventBanner::findOrFail($id);

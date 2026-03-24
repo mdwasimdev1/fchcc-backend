@@ -68,7 +68,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Title (English)</label>
                                         <input type="text" name="title_en"
-                                            value="{{ $banner->translation('en')?->title ?? '' }}"
+                                            value="{{ $banner->translations->where('locale', 'en')->first()->title ?? '' }}"
                                             class="form-control" placeholder="Enter banner title in English">
                                         @error('title_en')
                                             <span class="text-danger">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Title (Spanish)</label>
                                         <input type="text" name="title_es"
-                                            value="{{ $banner->translation('es')?->title ?? '' }}"
+                                            value="{{ $banner->translations->where('locale', 'es')->first()->title ?? '' }}"
                                             class="form-control" placeholder="Enter banner title in Spanish">
                                         @error('title_es')
                                             <span class="text-danger">{{ $message }}</span>
@@ -90,7 +90,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Description (English)</label>
                                         <textarea name="description_en" rows="3" class="form-control"
-                                            placeholder="Enter banner description in English">{{ $banner->translation('en')?->description ?? '' }}</textarea>
+                                            placeholder="Enter banner description in English">{{ $banner->translations->where('locale', 'en')->first()->description ?? '' }}</textarea>
                                         @error('description_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -98,7 +98,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Description (Spanish)</label>
                                         <textarea name="description_es" rows="3" class="form-control"
-                                            placeholder="Enter banner description in Spanish">{{ $banner->translation('es')?->description ?? '' }}</textarea>
+                                            placeholder="Enter banner description in Spanish">{{ $banner->translations->where('locale', 'es')->first()->description ?? '' }}</textarea>
                                         @error('description_es')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -110,7 +110,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Button Text (English)</label>
                                         <input type="text" name="button_text_en"
-                                            value="{{ $banner->translation('en')?->button_text ?? '' }}" class="form-control"
+                                            value="{{ $banner->translations->where('locale', 'en')->first()->button_text ?? '' }}" class="form-control"
                                             placeholder="Enter button text in English">
                                         @error('button_text_en')
                                             <span class="text-danger">{{ $message }}</span>
@@ -119,7 +119,7 @@
                                     <div class="mb-3 flex-fill">
                                         <label class="form-label">Button Text (Spanish)</label>
                                         <input type="text" name="button_text_es"
-                                            value="{{ $banner->translation('es')?->button_text ?? '' }}" class="form-control"
+                                            value="{{ $banner->translations->where('locale', 'es')->first()->button_text ?? '' }}" class="form-control"
                                             placeholder="Enter button text in Spanish">
                                         @error('button_text_es')
                                             <span class="text-danger">{{ $message }}</span>
