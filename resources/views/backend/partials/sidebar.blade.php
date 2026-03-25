@@ -63,22 +63,6 @@
                       <span class="nav-text">{{ __('messages.news') }}</span>
                   </a>
               </li>
-              {{-- <li>
-                  <a href="{{ route('SubCategory.index') }}" aria-expanded="false">
-                      <div class="menu-icon">
-                          <i class="fi fi-rs-employees"></i>
-                      </div>
-                      <span class="nav-text" >{{ __('messages.sub_category') }}</span>
-                  </a>
-              </li> --}}
-              {{-- <li>
-                  <a href="{{ route('product.index') }}" aria-expanded="false">
-                      <div class="menu-icon">
-                          <i class="fi fi-rr-workflow-alt"></i>
-                      </div>
-                      <span class="nav-text" data-i18n="{{ __('messages.products') }}">{{ __('messages.products') }}</span>
-                  </a>
-              </li> --}}
               <li>
                   <a href="{{ route('event.create') }}" aria-expanded="false">
                       <div class="menu-icon">
@@ -87,22 +71,15 @@
                       <span class="nav-text" data-i18n="{{ __('messages.event') }}">{{ __('messages.event') }}</span>
                   </a>
               </li>
-              {{-- <li>
-                  <a href="{{ route('faq.index') }}" aria-expanded="false">
+              <li>
+                  <a href="{{ route('featured-video.index') }}" aria-expanded="false">
                       <div class="menu-icon">
-                          <i class="fa-regular fa-circle-question"></i>
+                          <i class="fa-solid fa-video"></i>
                       </div>
-                      <span class="nav-text" data-i18n="Product">FAQ</span>
+                      <span class="nav-text" data-i18n="{{ __('messages.featured-videos') }}">{{ __('messages.featured-videos') }}</span>
                   </a>
-              </li> --}}
-              {{-- <li>
-                  <a href="{{ route('dynamicpages.index') }}" aria-expanded="false">
-                      <div class="menu-icon">
-                          <i class="fa-regular fa-circle-question"></i>
-                      </div>
-                      <span class="nav-text" data-i18n="Product">Dynamic Pages</span>
-                  </a>
-              </li> --}}
+              </li>
+
 
               <li class="menu-title" data-i18n="OUR FEATURES">{{ __('messages.settings') }}</li>
               <li>

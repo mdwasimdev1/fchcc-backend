@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\backend\DashboardController;
 use App\Http\Controllers\Web\Backend\ProductController;
 use App\Http\Controllers\Web\Backend\RoleController;
 use App\Http\Controllers\Web\Backend\EventController;
+use App\Http\Controllers\Web\Backend\FeaturedVideo;
 use App\Http\Controllers\Web\Backend\FCHCCMediaController;
 use App\Http\Controllers\Web\Backend\PartnerController;
 use App\Http\Controllers\Web\Backend\NewsController;
@@ -259,6 +260,12 @@ Route::controller(BannerController::class)->group(function () {
      Route::post('/banner/member/{id}/update', 'updateMemberBanner')->name('banner.member.update');
      Route::get('/banner/discount', 'editDiscountBanner')->name('banner.discount');
      Route::post('/banner/discount/{id}/update', 'updateDiscountBanner')->name('banner.discount.update');
+});
+
+// Featured Video Routes
+Route::controller(FeaturedVideo::class)->group(function () {
+     Route::get('/featured-video', 'index')->name('featured-video.index');
+     Route::post('/featured-video/update', 'update')->name('featured-video.update');
 });
 
 

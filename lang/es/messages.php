@@ -32,6 +32,7 @@ return [
     'partner-banners' => 'Pancartas de socios',
     'member-banners' => 'Pancartas de miembros',
     'discount-banners' => 'Pancartas de descuentos',
+    'featured-videos' => 'Videos destacados',
 
 
 

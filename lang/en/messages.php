@@ -32,6 +32,7 @@ return [
     'partner-banners' => 'Partner Banners',
     'member-banners' => 'Member Banners',
     'discount-banners' => 'Discount Banners',
+    'featured-videos' => 'Featured Videos',
 
 
 
